@@ -16,13 +16,20 @@ class ThingCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        setupRemove()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    }
+    
+    private func setupRemove() {
+        removeButton.layer.cornerRadius = removeButton.bounds.height / 2
+    }
+    
+    func setupThingCell(thing: String) {
+        thingLabel.text = thing
     }
     
     

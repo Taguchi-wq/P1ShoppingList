@@ -10,6 +10,7 @@ import UIKit
 
 class ShoppingListViewController: UIViewController {
     
+    private let reuseIdentifier = "ThingCell"
     private let things: [String] = ["トイレットペーパー", "マヨネーズ", "カレー"]
     
 
@@ -26,6 +27,8 @@ class ShoppingListViewController: UIViewController {
     
     private func setupTableView() {
         shoppingListTableView.dataSource = self
+        shoppingListTableView.register(UINib(nibName: reuseIdentifier, bundle: nil),
+                                       forCellReuseIdentifier: reuseIdentifier)
     }
     
     private func setupAddThingButton() {
@@ -46,9 +49,9 @@ extension ShoppingListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = things[indexPath.row]
-        return cell
+        let thingCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ThingCell
+        thingCell.setupThingCell(thing: things[indexPath.row])
+        return thingCell
     }
     
 }
