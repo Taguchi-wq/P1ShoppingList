@@ -14,6 +14,8 @@
 		7F8CB2F6268F5327009AE3CB /* ShoppingList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F8CB2F5268F5327009AE3CB /* ShoppingList.storyboard */; };
 		7F8CB2FD268F5CC5009AE3CB /* ThingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CB2FB268F5CC5009AE3CB /* ThingCell.swift */; };
 		7F8CB2FE268F5CC5009AE3CB /* ThingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8CB2FC268F5CC5009AE3CB /* ThingCell.xib */; };
+		7F8CB304268F625E009AE3CB /* NewRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CB303268F625E009AE3CB /* NewRegistrationViewController.swift */; };
+		7F8CB306268F6275009AE3CB /* NewRegistration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F8CB305268F6275009AE3CB /* NewRegistration.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		7F8CB2F5268F5327009AE3CB /* ShoppingList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShoppingList.storyboard; sourceTree = "<group>"; };
 		7F8CB2FB268F5CC5009AE3CB /* ThingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingCell.swift; sourceTree = "<group>"; };
 		7F8CB2FC268F5CC5009AE3CB /* ThingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThingCell.xib; sourceTree = "<group>"; };
+		7F8CB303268F625E009AE3CB /* NewRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRegistrationViewController.swift; sourceTree = "<group>"; };
+		7F8CB305268F6275009AE3CB /* NewRegistration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewRegistration.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 			children = (
 				7F8CB2EA268F520A009AE3CB /* LaunchScreen.storyboard */,
 				7F8CB2F5268F5327009AE3CB /* ShoppingList.storyboard */,
+				7F8CB305268F6275009AE3CB /* NewRegistration.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -98,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				7F8CB2F3268F530E009AE3CB /* ShoppingListViewController.swift */,
+				7F8CB303268F625E009AE3CB /* NewRegistrationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -163,6 +169,7 @@
 				7F8CB2FE268F5CC5009AE3CB /* ThingCell.xib in Resources */,
 				7F8CB2EC268F520A009AE3CB /* LaunchScreen.storyboard in Resources */,
 				7F8CB2E9268F520A009AE3CB /* Assets.xcassets in Resources */,
+				7F8CB306268F6275009AE3CB /* NewRegistration.storyboard in Resources */,
 				7F8CB2F6268F5327009AE3CB /* ShoppingList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +183,7 @@
 			files = (
 				7F8CB2F4268F530E009AE3CB /* ShoppingListViewController.swift in Sources */,
 				7F8CB2FD268F5CC5009AE3CB /* ThingCell.swift in Sources */,
+				7F8CB304268F625E009AE3CB /* NewRegistrationViewController.swift in Sources */,
 				7F8CB2E2268F5208009AE3CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
