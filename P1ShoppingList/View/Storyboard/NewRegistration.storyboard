@@ -16,14 +16,49 @@
                     <view key="view" contentMode="scaleToFill" id="jjL-Uj-ICd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cfi-qZ-u89">
+                                <rect key="frame" x="20" y="607" width="335" height="40"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qbF-H2-cNw">
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="40"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgk-93-3hl">
+                                        <rect key="frame" x="295" y="0.0" width="40" height="40"/>
+                                        <color key="backgroundColor" red="0.0119239362" green="0.47466540340000002" blue="0.98470920319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="Ap9-sd-Yae"/>
+                                            <constraint firstAttribute="height" constant="40" id="cCe-JC-bmD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="＋"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cfi-qZ-u89" firstAttribute="leading" secondItem="Mat-z0-NQj" secondAttribute="leading" constant="20" id="Em8-h4-PlI"/>
+                            <constraint firstItem="Mat-z0-NQj" firstAttribute="bottom" secondItem="cfi-qZ-u89" secondAttribute="bottom" constant="20" id="f6Y-ic-nRM"/>
+                            <constraint firstItem="Mat-z0-NQj" firstAttribute="trailing" secondItem="cfi-qZ-u89" secondAttribute="trailing" constant="20" id="o0h-ZK-Uln"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Mat-z0-NQj"/>
                     </view>
-                    <navigationItem key="navigationItem" title="今まで登録したもの" id="105-0j-BDg"/>
+                    <navigationItem key="navigationItem" title="今まで登録したもの" id="105-0j-BDg">
+                        <barButtonItem key="backBarButtonItem" title=" " id="nZ8-cP-oje"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addThingButton" destination="zgk-93-3hl" id="ai2-X0-uJ6"/>
+                        <outlet property="textField" destination="qbF-H2-cNw" id="6TU-vZ-7So"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bcw-k3-67X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="792.79999999999995" y="102.99850074962519"/>
+            <point key="canvasLocation" x="1732" y="102.99850074962519"/>
         </scene>
     </scenes>
 </document>

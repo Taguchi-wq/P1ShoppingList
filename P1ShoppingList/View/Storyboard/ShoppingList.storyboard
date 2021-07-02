@@ -48,7 +48,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QwC-pl-uhU"/>
                     </view>
-                    <navigationItem key="navigationItem" title="ショッピングリスト" id="t3S-zt-ucJ"/>
+                    <navigationItem key="navigationItem" title="ショッピングリスト" id="t3S-zt-ucJ">
+                        <barButtonItem key="backBarButtonItem" title=" " id="wxg-cH-J0W"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="addThingButton" destination="IDv-O6-qAC" id="PUs-R6-aqP"/>
                         <outlet property="shoppingListTableView" destination="go0-Sv-T65" id="prJ-GF-xqa"/>
