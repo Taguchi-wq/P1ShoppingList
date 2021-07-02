@@ -10,21 +10,33 @@ import UIKit
 
 class ShoppingListViewController: UIViewController {
 
+    @IBOutlet private weak var shoppingListTableView: UITableView!
+    
+    private let things: [String] = ["トイレットペーパー", "マヨネーズ", "カレー"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        setupTableView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupTableView() {
+        shoppingListTableView.dataSource = self
     }
-    */
+    
+}
 
+extension ShoppingListViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return things.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = things[indexPath.row]
+        return cell
+    }
+    
 }
