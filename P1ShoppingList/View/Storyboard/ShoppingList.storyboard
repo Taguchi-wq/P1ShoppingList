@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nog-N4-iun">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qy6-Y7-83L">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Shopping List View Controller-->
+        <!--ショッピングリスト-->
         <scene sceneID="8Aw-LZ-pwY">
             <objects>
                 <viewController id="nog-N4-iun" customClass="ShoppingListViewController" customModule="P1ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
@@ -48,12 +48,40 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QwC-pl-uhU"/>
                     </view>
+                    <navigationItem key="navigationItem" title="ショッピングリスト" id="t3S-zt-ucJ"/>
                     <connections>
                         <outlet property="addThingButton" destination="IDv-O6-qAC" id="PUs-R6-aqP"/>
                         <outlet property="shoppingListTableView" destination="go0-Sv-T65" id="prJ-GF-xqa"/>
+                        <segue destination="4zb-7N-Rem" kind="show" id="JvG-j6-Aav"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6X-Zh-Ci9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="799.20000000000005" y="139.880059970015"/>
+        </scene>
+        <!--NewRegistration-->
+        <scene sceneID="Vrj-hn-ki3">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="newRegistrationVC" storyboardName="NewRegistration" id="4zb-7N-Rem" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x3o-nD-aON" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1588" y="138.53073463268368"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ssi-Ds-boe">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ybI-IS-pj4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qy6-Y7-83L" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VIR-bu-y3B">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nog-N4-iun" kind="relationship" relationship="rootViewController" id="vM9-v6-hj7"/>
+                    </connections>
+                </navigationController>
             </objects>
             <point key="canvasLocation" x="-140" y="139.880059970015"/>
         </scene>

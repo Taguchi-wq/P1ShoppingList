@@ -35,9 +35,14 @@ class ShoppingListViewController: UIViewController {
         addThingButton.layer.cornerRadius = addThingButton.bounds.height / 2
     }
     
+    private func transitionToNewRegistrationVC() {
+        let newRegistrationVC = storyboard?.instantiateViewController(withIdentifier: "newRegistrationVC") as! NewRegistrationViewController
+        navigationController?.pushViewController(newRegistrationVC, animated: true)
+    }
+    
     
     @IBAction private func addThing(_ sender: UIButton) {
-        print("追加!!")
+        transitionToNewRegistrationVC()
     }
     
 }
