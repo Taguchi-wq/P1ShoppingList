@@ -9,20 +9,32 @@
 import UIKit
 
 class ShoppingListViewController: UIViewController {
-
-    @IBOutlet private weak var shoppingListTableView: UITableView!
     
     private let things: [String] = ["トイレットペーパー", "マヨネーズ", "カレー"]
+    
+
+    @IBOutlet private weak var shoppingListTableView: UITableView!
+    @IBOutlet private weak var addThingButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTableView()
+        setupAddThingButton()
     }
     
     private func setupTableView() {
         shoppingListTableView.dataSource = self
+    }
+    
+    private func setupAddThingButton() {
+        addThingButton.layer.cornerRadius = addThingButton.bounds.height / 2
+    }
+    
+    
+    @IBAction private func addThing(_ sender: UIButton) {
+        print("追加!!")
     }
     
 }

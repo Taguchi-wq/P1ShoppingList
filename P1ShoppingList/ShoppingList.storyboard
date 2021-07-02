@@ -40,17 +40,35 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDv-O6-qAC">
+                                <rect key="frame" x="305" y="597" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.011923936195671558" green="0.47466540336608887" blue="0.98470920324325562" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="48h-TN-olf"/>
+                                    <constraint firstAttribute="width" constant="50" id="6ml-Rl-5yy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <state key="normal" title="＋">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addThing:" destination="nog-N4-iun" eventType="touchUpInside" id="Ggq-nI-SZN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="QwC-pl-uhU" firstAttribute="trailing" secondItem="IDv-O6-qAC" secondAttribute="trailing" constant="20" id="Csp-25-Xr9"/>
                             <constraint firstItem="go0-Sv-T65" firstAttribute="leading" secondItem="QwC-pl-uhU" secondAttribute="leading" id="Dfg-bY-GT2"/>
                             <constraint firstItem="go0-Sv-T65" firstAttribute="top" secondItem="i3p-q4-bT4" secondAttribute="top" id="IiC-Ig-s6t"/>
                             <constraint firstItem="QwC-pl-uhU" firstAttribute="trailing" secondItem="go0-Sv-T65" secondAttribute="trailing" id="erj-QP-ZWU"/>
+                            <constraint firstItem="QwC-pl-uhU" firstAttribute="bottom" secondItem="IDv-O6-qAC" secondAttribute="bottom" constant="20" id="hjk-LP-nvI"/>
                             <constraint firstItem="QwC-pl-uhU" firstAttribute="bottom" secondItem="go0-Sv-T65" secondAttribute="bottom" id="yGW-vJ-E5I"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QwC-pl-uhU"/>
                     </view>
                     <connections>
+                        <outlet property="addThingButton" destination="IDv-O6-qAC" id="PUs-R6-aqP"/>
                         <outlet property="shoppingListTableView" destination="go0-Sv-T65" id="prJ-GF-xqa"/>
                     </connections>
                 </viewController>
