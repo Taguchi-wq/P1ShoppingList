@@ -39,12 +39,20 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2f1-xP-5O1">
+                                <rect key="frame" x="0.0" y="20" width="375" height="579"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="cfi-qZ-u89" firstAttribute="leading" secondItem="Mat-z0-NQj" secondAttribute="leading" constant="20" id="Em8-h4-PlI"/>
+                            <constraint firstItem="Mat-z0-NQj" firstAttribute="trailing" secondItem="2f1-xP-5O1" secondAttribute="trailing" id="LpJ-Hm-l6e"/>
+                            <constraint firstItem="cfi-qZ-u89" firstAttribute="top" secondItem="2f1-xP-5O1" secondAttribute="bottom" constant="8" id="Rao-eM-FVu"/>
+                            <constraint firstItem="2f1-xP-5O1" firstAttribute="leading" secondItem="Mat-z0-NQj" secondAttribute="leading" id="bhz-SC-x6a"/>
                             <constraint firstItem="Mat-z0-NQj" firstAttribute="bottom" secondItem="cfi-qZ-u89" secondAttribute="bottom" constant="20" id="f6Y-ic-nRM"/>
                             <constraint firstItem="Mat-z0-NQj" firstAttribute="trailing" secondItem="cfi-qZ-u89" secondAttribute="trailing" constant="20" id="o0h-ZK-Uln"/>
+                            <constraint firstItem="2f1-xP-5O1" firstAttribute="top" secondItem="Mat-z0-NQj" secondAttribute="top" id="rYw-sd-koz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mat-z0-NQj"/>
                     </view>
@@ -53,6 +61,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addThingButton" destination="zgk-93-3hl" id="ai2-X0-uJ6"/>
+                        <outlet property="shoppingHistoryListTableView" destination="2f1-xP-5O1" id="eqQ-3F-cRY"/>
                         <outlet property="textField" destination="qbF-H2-cNw" id="6TU-vZ-7So"/>
                     </connections>
                 </viewController>
