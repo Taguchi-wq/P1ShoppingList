@@ -126,11 +126,19 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		7FBE91B726901BB6005160E2 /* Model */ = {
+		7FAEB866269072E200D29D83 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				7FBE91BC26901EAA005160E2 /* Category.swift */,
 				7FBE91BA26901CCA005160E2 /* Thing.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		7FBE91B726901BB6005160E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7FAEB866269072E200D29D83 /* Entity */,
 			);
 			path = Model;
 			sourceTree = "<group>";

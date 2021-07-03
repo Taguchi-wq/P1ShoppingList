@@ -10,10 +10,10 @@ import Foundation
 import RealmSwift
 
 class Category: Object {
-    @objc dynamic var categoryID = Int()
+    @objc dynamic var categoryID = NSUUID().uuidString
     @objc dynamic var category   = String()
     
     override static func primaryKey() -> String? {
-        return "id"
+        return "categoryID"
     }
 }
