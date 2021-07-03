@@ -35,14 +35,14 @@ class ShoppingListViewController: UIViewController {
         addThingButton.layer.cornerRadius = addThingButton.bounds.height / 2
     }
     
-    private func transitionToNewRegistrationVC() {
-        let newRegistrationVC = storyboard?.instantiateViewController(withIdentifier: "newRegistrationVC") as! NewRegistrationViewController
-        navigationController?.pushViewController(newRegistrationVC, animated: true)
+    private func transitionToCategoryVC() {
+        let categoryVC = storyboard?.instantiateViewController(withIdentifier: "categoryListVC") as! CategoryListViewController
+        navigationController?.pushViewController(categoryVC, animated: true)
     }
     
     
     @IBAction private func addThing(_ sender: UIButton) {
-        transitionToNewRegistrationVC()
+        transitionToCategoryVC()
     }
     
 }

@@ -61,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="799.20000000000005" y="139.880059970015"/>
         </scene>
-        <!--NewRegistration-->
+        <!--CategoryList-->
         <scene sceneID="Vrj-hn-ki3">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="newRegistrationVC" storyboardName="NewRegistration" id="4zb-7N-Rem" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="categoryListVC" storyboardName="CategoryList" id="4zb-7N-Rem" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x3o-nD-aON" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1588" y="138.53073463268368"/>
@@ -72,7 +72,6 @@
         <!--Navigation Controller-->
         <scene sceneID="ssi-Ds-boe">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ybI-IS-pj4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qy6-Y7-83L" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VIR-bu-y3B">
@@ -84,6 +83,7 @@
                         <segue destination="nog-N4-iun" kind="relationship" relationship="rootViewController" id="vM9-v6-hj7"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ybI-IS-pj4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-140" y="139.880059970015"/>
         </scene>

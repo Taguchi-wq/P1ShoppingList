@@ -12,7 +12,7 @@
         <!--カテゴリー-->
         <scene sceneID="jZw-j6-dq7">
             <objects>
-                <viewController id="KbS-gb-rWo" customClass="CategoryListViewController" customModule="P1ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="categoryListVC" id="KbS-gb-rWo" customClass="CategoryListViewController" customModule="P1ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cG1-GV-RY9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,11 +53,20 @@
                     <navigationItem key="navigationItem" title="カテゴリー" id="vEK-gM-DK9"/>
                     <connections>
                         <outlet property="categoryListTableView" destination="OHr-pP-awR" id="QPL-4i-Ur7"/>
+                        <segue destination="YHh-gd-fwt" kind="show" id="vRl-3D-t5S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nDk-eK-x7r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1126" y="187"/>
+        </scene>
+        <!--NewRegistration-->
+        <scene sceneID="uI1-vq-aof">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="newRegistrationVC" storyboardName="NewRegistration" id="YHh-gd-fwt" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bZe-Tq-NHs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1823" y="186"/>
         </scene>
     </scenes>
 </document>
