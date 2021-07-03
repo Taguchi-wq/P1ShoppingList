@@ -11,7 +11,8 @@ import UIKit
 class NewRegistrationViewController: UIViewController {
 
     @IBOutlet private weak var shoppingHistoryListTableView: UITableView!
-    @IBOutlet private weak var textField: UITextField!
+    @IBOutlet private weak var thingTextField: UITextField!
+    @IBOutlet private weak var categoryTextField: UITextField!
     @IBOutlet private weak var addThingButton: UIButton!
     
     
