@@ -14,7 +14,7 @@ class CategoryListViewController: UIViewController {
     
     
     private let identifier = "categoryCell"
-    private let categories: [String] = []
+    private let categories: [String] = ["食品", "日用品", "趣味"]
     
     
     override func viewDidLoad() {
@@ -25,6 +25,12 @@ class CategoryListViewController: UIViewController {
     
     private func setupCategoryListTableView() {
         categoryListTableView.dataSource = self
+        categoryListTableView.delegate   = self
+    }
+    
+    private func transitionToNewRegistrationVC() {
+        let newRegistrationVC = storyboard?.instantiateViewController(withIdentifier: "newRegistrationVC") as! NewRegistrationViewController
+        navigationController?.pushViewController(newRegistrationVC, animated: true)
     }
 
 }
@@ -40,6 +46,14 @@ extension CategoryListViewController: UITableViewDataSource {
         let categoryCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         categoryCell.textLabel?.text = categories[indexPath.row]
         return categoryCell
+    }
+    
+}
+
+extension CategoryListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        transitionToNewRegistrationVC()
     }
     
 }
