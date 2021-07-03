@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ShoppingListViewController: UIViewController {
     
     private let reuseIdentifier = "ThingCell"
-    private let things: [String] = ["トイレットペーパー", "マヨネーズ", "カレー"]
+    private let realmManager = RealmManager()
+    private var things: Results<Thing>!
     
 
     @IBOutlet private weak var shoppingListTableView: UITableView!
@@ -40,9 +42,14 @@ class ShoppingListViewController: UIViewController {
         navigationController?.pushViewController(categoryVC, animated: true)
     }
     
+    private func transitionToNewRegistrationVC() {
+        let newRegistrationVC = storyboard?.instantiateViewController(withIdentifier: "newRegistrationVC") as! NewRegistrationViewController
+        navigationController?.pushViewController(newRegistrationVC, animated: true)
+    }
+    
     
     @IBAction private func addThing(_ sender: UIButton) {
-        transitionToCategoryVC()
+        realmManager.categoryCount == 0 ? transitionToNewRegistrationVC() : transitionToCategoryVC()
     }
     
 }
@@ -50,12 +57,13 @@ class ShoppingListViewController: UIViewController {
 extension ShoppingListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard things != nil else { return 0 }
         return things.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let thingCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ThingCell
-        thingCell.setupThingCell(thing: things[indexPath.row])
+        thingCell.setupThingCell(thing: things[indexPath.row].thingName)
         return thingCell
     }
     

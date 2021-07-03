@@ -14,7 +14,7 @@ class CategoryListViewController: UIViewController {
     
     
     private let identifier = "categoryCell"
-    private let categories: [String] = ["食品", "日用品", "趣味"]
+    private let categories: [String] = []
     
     
     override func viewDidLoad() {

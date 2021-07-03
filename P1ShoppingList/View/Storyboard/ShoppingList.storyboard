@@ -55,6 +55,7 @@
                         <outlet property="addThingButton" destination="IDv-O6-qAC" id="PUs-R6-aqP"/>
                         <outlet property="shoppingListTableView" destination="go0-Sv-T65" id="prJ-GF-xqa"/>
                         <segue destination="4zb-7N-Rem" kind="show" id="JvG-j6-Aav"/>
+                        <segue destination="sWh-3G-4h2" kind="show" id="4M1-5X-LXu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6X-Zh-Ci9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -67,7 +68,15 @@
                 <viewControllerPlaceholder storyboardIdentifier="categoryListVC" storyboardName="CategoryList" id="4zb-7N-Rem" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x3o-nD-aON" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1588" y="138.53073463268368"/>
+            <point key="canvasLocation" x="1580" y="-5"/>
+        </scene>
+        <!--NewRegistration-->
+        <scene sceneID="0W1-Z4-R7m">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="newRegistrationVC" storyboardName="NewRegistration" id="sWh-3G-4h2" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A1I-hL-8Vx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1580" y="300"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ssi-Ds-boe">

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewRegistrationViewController: UIViewController {
 
@@ -17,7 +18,8 @@ class NewRegistrationViewController: UIViewController {
     
     
     private let reuseIdentifier = "ThingCell"
-    private let things: [String] = ["トイレットペーパー", "マヨネーズ", "カレー"]
+    private let realmManager = RealmManager()
+    private var things: Results<Thing>!
     
     
     override func viewDidLoad() {
@@ -25,6 +27,7 @@ class NewRegistrationViewController: UIViewController {
         
         setupShoppingHistoryListTableView()
         setupAddThingButton()
+        appendThings()
     }
     
     private func setupShoppingHistoryListTableView() {
@@ -36,18 +39,23 @@ class NewRegistrationViewController: UIViewController {
     private func setupAddThingButton() {
         addThingButton.layer.cornerRadius = addThingButton.bounds.height / 2
     }
+    
+    private func appendThings() {
+        things = realmManager.loadAllThing()
+    }
 
 }
 
 extension NewRegistrationViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard things != nil else { return 0 }
         return things.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let thingCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ThingCell
-        thingCell.setupThingCell(thing: things[indexPath.row])
+        thingCell.setupThingCell(thing: things[indexPath.row].thingName)
         return thingCell
     }
     

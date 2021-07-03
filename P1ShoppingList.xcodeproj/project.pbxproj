@@ -16,6 +16,7 @@
 		7F8CB2FE268F5CC5009AE3CB /* ThingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8CB2FC268F5CC5009AE3CB /* ThingCell.xib */; };
 		7F8CB304268F625E009AE3CB /* NewRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CB303268F625E009AE3CB /* NewRegistrationViewController.swift */; };
 		7F8CB306268F6275009AE3CB /* NewRegistration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F8CB305268F6275009AE3CB /* NewRegistration.storyboard */; };
+		7FAEB86A26907F7800D29D83 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAEB86926907F7800D29D83 /* RealmManager.swift */; };
 		7FBE91B426900FD4005160E2 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE91B326900FD4005160E2 /* CategoryListViewController.swift */; };
 		7FBE91B626900FEF005160E2 /* CategoryList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FBE91B526900FEF005160E2 /* CategoryList.storyboard */; };
 		7FBE91BB26901CCA005160E2 /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE91BA26901CCA005160E2 /* Thing.swift */; };
@@ -36,6 +37,7 @@
 		7F8CB2FC268F5CC5009AE3CB /* ThingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThingCell.xib; sourceTree = "<group>"; };
 		7F8CB303268F625E009AE3CB /* NewRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRegistrationViewController.swift; sourceTree = "<group>"; };
 		7F8CB305268F6275009AE3CB /* NewRegistration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewRegistration.storyboard; sourceTree = "<group>"; };
+		7FAEB86926907F7800D29D83 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		7FBE91B326900FD4005160E2 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
 		7FBE91B526900FEF005160E2 /* CategoryList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoryList.storyboard; sourceTree = "<group>"; };
 		7FBE91BA26901CCA005160E2 /* Thing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				7FAEB866269072E200D29D83 /* Entity */,
+				7FAEB86926907F7800D29D83 /* RealmManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FBE91B426900FD4005160E2 /* CategoryListViewController.swift in Sources */,
+				7FAEB86A26907F7800D29D83 /* RealmManager.swift in Sources */,
 				7F8CB2F4268F530E009AE3CB /* ShoppingListViewController.swift in Sources */,
 				7F8CB2FD268F5CC5009AE3CB /* ThingCell.swift in Sources */,
 				7F8CB304268F625E009AE3CB /* NewRegistrationViewController.swift in Sources */,
