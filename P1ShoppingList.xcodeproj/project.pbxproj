@@ -18,6 +18,7 @@
 		7F8CB306268F6275009AE3CB /* NewRegistration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F8CB305268F6275009AE3CB /* NewRegistration.storyboard */; };
 		7FBE91B426900FD4005160E2 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE91B326900FD4005160E2 /* CategoryListViewController.swift */; };
 		7FBE91B626900FEF005160E2 /* CategoryList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FBE91B526900FEF005160E2 /* CategoryList.storyboard */; };
+		7FBE91BB26901CCA005160E2 /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE91BA26901CCA005160E2 /* Thing.swift */; };
 		C311C3DB983EED6857346423 /* Pods_P1ShoppingList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70EDB0277C2EC4F573911B2E /* Pods_P1ShoppingList.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		7F8CB305268F6275009AE3CB /* NewRegistration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewRegistration.storyboard; sourceTree = "<group>"; };
 		7FBE91B326900FD4005160E2 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
 		7FBE91B526900FEF005160E2 /* CategoryList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoryList.storyboard; sourceTree = "<group>"; };
+		7FBE91BA26901CCA005160E2 /* Thing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
 		B7C392795930423B65D7BD13 /* Pods-P1ShoppingList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P1ShoppingList.debug.xcconfig"; path = "Target Support Files/Pods-P1ShoppingList/Pods-P1ShoppingList.debug.xcconfig"; sourceTree = "<group>"; };
 		C8CE3E9E3F5CE6F62E445243 /* Pods-P1ShoppingList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P1ShoppingList.release.xcconfig"; path = "Target Support Files/Pods-P1ShoppingList/Pods-P1ShoppingList.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +75,7 @@
 		7F8CB2E0268F5208009AE3CB /* P1ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				7FBE91B726901BB6005160E2 /* Model */,
 				7F8CB2FF268F5E20009AE3CB /* View */,
 				7F8CB302268F5E66009AE3CB /* Controller */,
 				7F8CB2E1268F5208009AE3CB /* AppDelegate.swift */,
@@ -119,6 +122,14 @@
 				7F8CB303268F625E009AE3CB /* NewRegistrationViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		7FBE91B726901BB6005160E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7FBE91BA26901CCA005160E2 /* Thing.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		817D2D2700C19656027FB88B /* Frameworks */ = {
@@ -260,6 +271,7 @@
 				7F8CB2F4268F530E009AE3CB /* ShoppingListViewController.swift in Sources */,
 				7F8CB2FD268F5CC5009AE3CB /* ThingCell.swift in Sources */,
 				7F8CB304268F625E009AE3CB /* NewRegistrationViewController.swift in Sources */,
+				7FBE91BB26901CCA005160E2 /* Thing.swift in Sources */,
 				7F8CB2E2268F5208009AE3CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
