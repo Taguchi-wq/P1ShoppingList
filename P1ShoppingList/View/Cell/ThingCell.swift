@@ -17,14 +17,14 @@ class ThingCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        setupRemove()
+        setupRemoveButton()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    private func setupRemove() {
+    private func setupRemoveButton() {
         removeButton.layer.cornerRadius = removeButton.bounds.height / 2
     }
     
