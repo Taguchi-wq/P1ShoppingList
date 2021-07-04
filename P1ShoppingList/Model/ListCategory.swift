@@ -14,7 +14,7 @@ public enum ListCategory {
     case clothes
     case other
     
-    var category: String {
+    var categoryName: String {
         switch self {
         case .dailyNecessities:
             return "日用品"

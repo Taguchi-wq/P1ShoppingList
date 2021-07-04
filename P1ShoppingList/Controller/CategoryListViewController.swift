@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CategoryListViewController: UIViewController {
 
@@ -14,13 +15,15 @@ class CategoryListViewController: UIViewController {
     
     
     private let identifier = "categoryCell"
-    private let categories: [String] = []
+    private let realmManager = RealmManager()
+    private var categories: Results<Category>!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCategoryListTableView()
+        appendCategories()
     }
     
     private func setupCategoryListTableView() {
@@ -32,6 +35,11 @@ class CategoryListViewController: UIViewController {
         let newRegistrationVC = storyboard?.instantiateViewController(withIdentifier: "newRegistrationVC") as! NewRegistrationViewController
         navigationController?.pushViewController(newRegistrationVC, animated: true)
     }
+    
+    private func appendCategories() {
+        guard let categories = realmManager.loadAllCategory() else { return }
+        self.categories = categories
+    }
 
 }
 
@@ -39,12 +47,13 @@ class CategoryListViewController: UIViewController {
 extension CategoryListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard categories != nil else { return 0 }
         return categories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let categoryCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        categoryCell.textLabel?.text = categories[indexPath.row]
+        categoryCell.textLabel?.text = categories[indexPath.row].category
         return categoryCell
     }
     

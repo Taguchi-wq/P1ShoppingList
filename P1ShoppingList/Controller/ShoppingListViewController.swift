@@ -25,6 +25,7 @@ class ShoppingListViewController: UIViewController {
         
         setupTableView()
         setupAddThingButton()
+        writeCategoriesInRealm()
     }
     
     private func setupTableView() {
@@ -45,6 +46,18 @@ class ShoppingListViewController: UIViewController {
     private func transitionToNewRegistrationVC() {
         let newRegistrationVC = storyboard?.instantiateViewController(withIdentifier: "newRegistrationVC") as! NewRegistrationViewController
         navigationController?.pushViewController(newRegistrationVC, animated: true)
+    }
+    
+    private func writeCategoriesInRealm() {
+        guard let categories = realmManager.loadAllCategory() else { return }
+        if categories.isEmpty {
+            let categories = ["日用品", "食品", "衣服", "その他"]
+            _ = categories.map {
+                let category = Category()
+                category.category = $0
+                realmManager.addCategory(category)
+            }
+        }
     }
     
     
