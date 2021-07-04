@@ -56,7 +56,7 @@ class ShoppingListViewController: UIViewController {
     }
     
     
-    @IBAction private func addThing(_ sender: UIButton) {
+    @IBAction private func tappedAddThingButton(_ sender: UIButton) {
         transitionToCategoryVC()
     }
     
