@@ -43,6 +43,10 @@ class RealmManager {
         return loadAllThing()?.filter("categoryID == '\(categoryID)'")
     }
     
+    func loadThingsNotDeleted() -> Results<Thing>? {
+        return loadAllThing()?.filter("isDelete == false")
+    }
+    
     func writeCategory(_ category: Category) {
         write(category)
     }

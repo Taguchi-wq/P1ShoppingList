@@ -14,7 +14,7 @@ class Thing: Object {
     @objc dynamic var categoryID = String()
     @objc dynamic var createdAt  = Date()
     @objc dynamic var thingName  = String()
-    @objc dynamic var deleteFlag = Bool()
+    @objc dynamic var isDelete   = Bool()
     
     override static func primaryKey() -> String? {
         return "thingID"

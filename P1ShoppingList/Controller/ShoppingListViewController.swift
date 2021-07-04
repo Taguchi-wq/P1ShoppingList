@@ -26,6 +26,13 @@ class ShoppingListViewController: UIViewController {
         setupShoppingListTableView()
         setupAddThingButton()
         writeCategoriesInRealm()
+        appendThingsNotDeleted()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        shoppingListTableView.reloadData()
     }
     
     private func setupShoppingListTableView() {
@@ -53,6 +60,11 @@ class ShoppingListViewController: UIViewController {
                 realmManager.writeCategory(category)
             }
         }
+    }
+    
+    private func appendThingsNotDeleted() {
+        guard let things = realmManager.loadThingsNotDeleted() else { return }
+        self.things = things
     }
     
     
