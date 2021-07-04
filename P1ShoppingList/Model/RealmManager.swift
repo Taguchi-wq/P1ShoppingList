@@ -33,6 +33,17 @@ class RealmManager {
         return nil
     }
     
+    func loadThingByCategoryID(_ categoryID: String) -> Results<Thing>? {
+        do {
+            let realm = try Realm()
+            return realm.objects(Thing.self).filter("categoryID == '\(categoryID)'")
+        } catch {
+            print(error)
+        }
+        
+        return nil
+    }
+    
     func addCategory(_ category: Category) {
         do {
             let realm = try Realm()

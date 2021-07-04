@@ -31,8 +31,10 @@ class CategoryListViewController: UIViewController {
         categoryListTableView.delegate   = self
     }
     
-    private func transitionToNewRegistrationVC() {
+    private func transitionToNewRegistrationVC(indexPath: IndexPath) {
         let newRegistrationVC = storyboard?.instantiateViewController(withIdentifier: "newRegistrationVC") as! NewRegistrationViewController
+        let categoryID = categories[indexPath.row].categoryID
+        newRegistrationVC.setupProperties(categoryID: categoryID)
         navigationController?.pushViewController(newRegistrationVC, animated: true)
     }
     
@@ -62,7 +64,7 @@ extension CategoryListViewController: UITableViewDataSource {
 extension CategoryListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        transitionToNewRegistrationVC()
+        transitionToNewRegistrationVC(indexPath: indexPath)
     }
     
 }

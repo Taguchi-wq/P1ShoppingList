@@ -13,13 +13,13 @@ class NewRegistrationViewController: UIViewController {
 
     @IBOutlet private weak var shoppingHistoryListTableView: UITableView!
     @IBOutlet private weak var thingTextField: UITextField!
-    @IBOutlet private weak var categoryTextField: UITextField!
     @IBOutlet private weak var addThingButton: UIButton!
     
     
-    private let reuseIdentifier = "ThingCell"
+    private let reuseIdentifier = "Cell"
     private let realmManager = RealmManager()
     private var things: Results<Thing>!
+    private var categoryID = String()
     
     
     override func viewDidLoad() {
@@ -27,23 +27,44 @@ class NewRegistrationViewController: UIViewController {
         
         setupShoppingHistoryListTableView()
         setupAddThingButton()
-        appendThings()
+        appendThingsByCategoryID(categoryID)
+    }
+    
+    func setupProperties(categoryID: String) {
+        self.categoryID = categoryID
     }
     
     private func setupShoppingHistoryListTableView() {
         shoppingHistoryListTableView.dataSource = self
-        shoppingHistoryListTableView.register(UINib(nibName: reuseIdentifier, bundle: nil),
-                                             forCellReuseIdentifier: reuseIdentifier)
     }
     
     private func setupAddThingButton() {
         addThingButton.layer.cornerRadius = addThingButton.bounds.height / 2
     }
     
-    private func appendThings() {
-        things = realmManager.loadAllThing()
+    private func appendThingsByCategoryID(_ categoryID: String) {
+        guard let things = realmManager.loadThingByCategoryID(categoryID) else { return }
+        self.things = things
+    }
+    
+    private func writeThingInRealm(_ thingName: String) {
+        let thing = Thing()
+        thing.categoryID = categoryID
+        thing.thingName = thingName
+        realmManager.addThing(thing)
     }
 
+    
+    @IBAction private func tappedAddThingButton(_ sender: UIButton) {
+        let thingIsEmpty = thingTextField.text?.isEmpty ?? false
+        if thingIsEmpty {
+            print("必要事項が入力されていません")
+        } else {
+            let thing = thingTextField.text!
+            writeThingInRealm(thing)
+            shoppingHistoryListTableView.reloadData()
+        }
+    }
 }
 
 extension NewRegistrationViewController: UITableViewDataSource {
@@ -54,9 +75,9 @@ extension NewRegistrationViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let thingCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ThingCell
-        thingCell.setupThingCell(thing: things[indexPath.row].thingName)
-        return thingCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        cell.textLabel?.text = things[indexPath.row].thingName
+        return cell
     }
     
 }

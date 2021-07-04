@@ -23,12 +23,12 @@ class ShoppingListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTableView()
+        setupShoppingListTableView()
         setupAddThingButton()
         writeCategoriesInRealm()
     }
     
-    private func setupTableView() {
+    private func setupShoppingListTableView() {
         shoppingListTableView.dataSource = self
         shoppingListTableView.register(UINib(nibName: reuseIdentifier, bundle: nil),
                                        forCellReuseIdentifier: reuseIdentifier)
