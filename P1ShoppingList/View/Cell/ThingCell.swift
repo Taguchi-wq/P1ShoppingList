@@ -25,7 +25,7 @@ class ThingCell: UITableViewCell {
     }
     
     private func setupRemoveButton() {
-        removeButton.layer.cornerRadius = removeButton.bounds.height / 2
+        removeButton.layer.cornerRadius = 20
     }
     
     func setupThingCell(thing: String) {

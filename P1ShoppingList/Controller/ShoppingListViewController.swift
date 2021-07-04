@@ -37,6 +37,7 @@ class ShoppingListViewController: UIViewController {
     
     private func setupShoppingListTableView() {
         shoppingListTableView.dataSource = self
+        shoppingListTableView.delegate   = self
         shoppingListTableView.register(UINib(nibName: reuseIdentifier, bundle: nil),
                                        forCellReuseIdentifier: reuseIdentifier)
     }
@@ -85,6 +86,14 @@ extension ShoppingListViewController: UITableViewDataSource {
         let thingCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ThingCell
         thingCell.setupThingCell(thing: things[indexPath.row].thingName)
         return thingCell
+    }
+    
+}
+
+extension ShoppingListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
     
 }
