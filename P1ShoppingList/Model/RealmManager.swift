@@ -11,18 +11,6 @@ import RealmSwift
 
 class RealmManager {
     
-    var categoryCount: Int {
-        do {
-            let realm = try Realm()
-            return realm.objects(Category.self).count
-        } catch {
-            print(error)
-        }
-
-        return 0
-    }
-    
-    
     func loadAllThing() -> Results<Thing>? {
         do {
             let realm = try Realm()

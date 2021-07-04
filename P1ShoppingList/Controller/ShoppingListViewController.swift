@@ -43,11 +43,6 @@ class ShoppingListViewController: UIViewController {
         navigationController?.pushViewController(categoryVC, animated: true)
     }
     
-    private func transitionToNewRegistrationVC() {
-        let newRegistrationVC = storyboard?.instantiateViewController(withIdentifier: "newRegistrationVC") as! NewRegistrationViewController
-        navigationController?.pushViewController(newRegistrationVC, animated: true)
-    }
-    
     private func writeCategoriesInRealm() {
         guard let categories = realmManager.loadAllCategory() else { return }
         if categories.isEmpty {
@@ -62,7 +57,7 @@ class ShoppingListViewController: UIViewController {
     
     
     @IBAction private func addThing(_ sender: UIButton) {
-        realmManager.categoryCount == 0 ? transitionToNewRegistrationVC() : transitionToCategoryVC()
+        transitionToCategoryVC()
     }
     
 }
