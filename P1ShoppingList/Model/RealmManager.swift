@@ -11,55 +11,44 @@ import RealmSwift
 
 class RealmManager {
     
-    func loadAllThing() -> Results<Thing>? {
+    private func loadAll<T: Object>(_ object: T.Type) -> Results<T>? {
         do {
             let realm = try Realm()
-            return realm.objects(Thing.self)
+            return realm.objects(T.self)
         } catch {
             print(error)
         }
         
         return nil
+    }
+    
+    private func write<T: Object>(_ object: T) {
+        do {
+            let realm = try Realm()
+            try realm.write { realm.add(object) }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func loadAllThing() -> Results<Thing>? {
+        return loadAll(Thing.self)
     }
     
     func loadAllCategory() -> Results<Category>? {
-        do {
-            let realm = try Realm()
-            return realm.objects(Category.self)
-        } catch {
-            print(error)
-        }
-        
-        return nil
+        return loadAll(Category.self)
     }
     
     func loadThingByCategoryID(_ categoryID: String) -> Results<Thing>? {
-        do {
-            let realm = try Realm()
-            return realm.objects(Thing.self).filter("categoryID == '\(categoryID)'")
-        } catch {
-            print(error)
-        }
-        
-        return nil
+        return loadAllThing()?.filter("categoryID == '\(categoryID)'")
     }
     
-    func addCategory(_ category: Category) {
-        do {
-            let realm = try Realm()
-            try realm.write { realm.add(category) }
-        } catch {
-            print(error)
-        }
+    func writeCategory(_ category: Category) {
+        write(category)
     }
     
-    func addThing(_ thing: Thing) {
-        do {
-            let realm = try Realm()
-            try realm.write { realm.add(thing) }
-        } catch {
-            print(error)
-        }
+    func writeThing(_ thing: Thing) {
+       write(thing)
     }
     
 }

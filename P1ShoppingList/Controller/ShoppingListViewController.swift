@@ -50,7 +50,7 @@ class ShoppingListViewController: UIViewController {
             _ = categories.map {
                 let category = Category()
                 category.category = $0
-                realmManager.addCategory(category)
+                realmManager.writeCategory(category)
             }
         }
     }

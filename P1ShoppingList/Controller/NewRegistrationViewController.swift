@@ -51,7 +51,7 @@ class NewRegistrationViewController: UIViewController {
         let thing = Thing()
         thing.categoryID = categoryID
         thing.thingName = thingName
-        realmManager.addThing(thing)
+        realmManager.writeThing(thing)
     }
 
     
