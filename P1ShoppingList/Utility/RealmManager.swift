@@ -60,4 +60,13 @@ class RealmManager {
         return isDuplicate
     }
     
+    func updateThingDeleteFlag(_ thing: Thing, isDelete: Bool) {
+        do {
+            let realm = try Realm()
+            try realm.write { thing.isDelete = isDelete }
+        } catch {
+            print(error)
+        }
+    }
+    
 }

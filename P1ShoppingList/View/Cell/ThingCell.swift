@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ThingCell: UITableViewCell {
     
     @IBOutlet private weak var thingLabel: UILabel!
     @IBOutlet private weak var removeButton: UIButton!
+    
+    
+    private let realmManager = RealmManager()
+    private var thing: Thing?
+    weak var delegate: ThingCellDelegate?
     
     
     override func awakeFromNib() {
@@ -24,17 +30,22 @@ class ThingCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    func setupThingCell(thing: Thing) {
+        thingLabel.text = thing.thingName
+        self.thing      = thing
+    }
+    
     private func setupRemoveButton() {
         removeButton.layer.cornerRadius = 20
     }
     
-    func setupThingCell(thing: String) {
-        thingLabel.text = thing
+    
+    @IBAction private func tappedRemoveButton(_ sender: UIButton) {
+        delegate?.remove(thing: thing)
     }
     
-    
-    @IBAction private func remove(_ sender: UIButton) {
-        print("remove")
-    }
-    
+}
+
+protocol ThingCellDelegate: class {
+    func remove(thing: Thing?)
 }

@@ -84,7 +84,8 @@ extension ShoppingListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let thingCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ThingCell
-        thingCell.setupThingCell(thing: things[indexPath.row].thingName)
+        thingCell.setupThingCell(thing: things[indexPath.row])
+        thingCell.delegate = self
         return thingCell
     }
     
@@ -94,6 +95,18 @@ extension ShoppingListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+}
+
+extension ShoppingListViewController: ThingCellDelegate {
+    
+    func remove(thing: Thing?) {
+        Alert.presentDelete(on: self) { _ in
+            guard let thing = thing else { return }
+            self.realmManager.updateThingDeleteFlag(thing, isDelete: true)
+            DispatchQueue.main.async { self.shoppingListTableView.reloadData() }
+        }
     }
     
 }

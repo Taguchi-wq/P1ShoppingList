@@ -37,7 +37,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="-"/>
                                 <connections>
-                                    <action selector="remove:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="SqF-1G-fXd"/>
+                                    <action selector="tappedRemoveButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4dg-wa-xdM"/>
                                 </connections>
                             </button>
                         </subviews>
