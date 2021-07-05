@@ -36,6 +36,7 @@ class NewRegistrationViewController: UIViewController {
     
     private func setupShoppingHistoryListTableView() {
         shoppingHistoryListTableView.dataSource = self
+        shoppingHistoryListTableView.delegate   = self
     }
     
     private func setupAddThingButton() {
@@ -84,6 +85,17 @@ extension NewRegistrationViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         cell.textLabel?.text = things[indexPath.row].thingName
         return cell
+    }
+    
+}
+
+extension NewRegistrationViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let thing = things[indexPath.row]
+        Alert.presentAdd(on: self, thingName: thing.thingName) { _ in
+            self.realmManager.updateThingDeleteFlag(thing, isDelete: false)
+        }
     }
     
 }

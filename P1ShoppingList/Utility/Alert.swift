@@ -32,8 +32,13 @@ struct Alert {
         DispatchQueue.main.async { viewController.present(alert, animated: true) }
     }
 
+    static func presentAdd(on viewController: UIViewController, thingName: String, handler: ((UIAlertAction) -> Void)?) {
+        let alert = basicAlert(title: "ショッピングリストに\n「\(thingName)」\nを追加しました", message: "", handler: handler)
+        DispatchQueue.main.async { viewController.present(alert, animated: true) }
+    }
+    
     static func presentDelete(on viewController: UIViewController, handler: ((UIAlertAction) -> Void)?) {
-        let alert = twoButtonAlert(title: "本当に削除しますか", message: "", handler: handler)
+        let alert = twoButtonAlert(title: "本当に削除しますか?", message: "", handler: handler)
         DispatchQueue.main.async { viewController.present(alert, animated: true) }
     }
     
