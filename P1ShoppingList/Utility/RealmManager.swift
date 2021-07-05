@@ -55,4 +55,9 @@ class RealmManager {
        write(thing)
     }
     
+    func checkDuplicate(thingName: String) -> Bool {
+        let isDuplicate = loadAllThing()!.filter("thingName == '\(thingName)'").isEmpty ? false : true
+        return isDuplicate
+    }
+    
 }

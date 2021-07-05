@@ -48,10 +48,15 @@ class NewRegistrationViewController: UIViewController {
     }
     
     private func writeThingInRealm(_ thingName: String) {
-        let thing = Thing()
-        thing.categoryID = categoryID
-        thing.thingName = thingName
-        realmManager.writeThing(thing)
+        let isDuplicate = realmManager.checkDuplicate(thingName: thingName)
+        if isDuplicate {
+            Alert.presentDuplicate(on: self)
+        } else {
+            let thing = Thing()
+            thing.categoryID = categoryID
+            thing.thingName = thingName
+            realmManager.writeThing(thing)
+        }
     }
 
     

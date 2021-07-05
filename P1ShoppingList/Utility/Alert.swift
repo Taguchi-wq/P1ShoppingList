@@ -18,7 +18,12 @@ struct Alert {
     
     static func presentPleaseWrite(on viewController: UIViewController) {
         let alert = basicAlert(title: "無くなったモノを入力して下さい", message: "")
-        viewController.present(alert, animated: true)
+        DispatchQueue.main.async { viewController.present(alert, animated: true) }
+    }
+    
+    static func presentDuplicate(on viewController: UIViewController) {
+        let alert = basicAlert(title: "モノの名前が重複しています。\n書き直して下さい", message: "")
+        DispatchQueue.main.async { viewController.present(alert, animated: true) }
     }
     
 }
