@@ -102,8 +102,8 @@ extension ShoppingListViewController: UITableViewDelegate {
 extension ShoppingListViewController: ThingCellDelegate {
     
     func remove(thing: Thing?) {
-        Alert.presentDelete(on: self) { _ in
-            guard let thing = thing else { return }
+        guard let thing = thing else { return }
+        Alert.presentDelete(on: self, thingName: thing.thingName) { _ in
             self.realmManager.updateThingDeleteFlag(thing, isDelete: true)
             DispatchQueue.main.async { self.shoppingListTableView.reloadData() }
         }
