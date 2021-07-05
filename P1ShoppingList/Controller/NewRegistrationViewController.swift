@@ -58,10 +58,11 @@ class NewRegistrationViewController: UIViewController {
     @IBAction private func tappedAddThingButton(_ sender: UIButton) {
         let thingIsEmpty = thingTextField.text?.isEmpty ?? false
         if thingIsEmpty {
-            print("必要事項が入力されていません")
+            Alert.presentPleaseWrite(on: self)
         } else {
             let thing = thingTextField.text!
             writeThingInRealm(thing)
+            thingTextField.text = String()
             shoppingHistoryListTableView.reloadData()
         }
     }
