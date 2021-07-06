@@ -11,7 +11,7 @@ import RealmSwift
 
 class ThingCell: UITableViewCell {
     
-    @IBOutlet private weak var registrationDate: UILabel!
+    @IBOutlet private weak var registrationDateLabel: UILabel!
     @IBOutlet private weak var thingLabel: UILabel!
     @IBOutlet private weak var removeButton: UIButton!
     
@@ -32,8 +32,9 @@ class ThingCell: UITableViewCell {
     }
     
     func setupThingCell(thing: Thing) {
-        thingLabel.text = thing.thingName
-        self.thing      = thing
+        thingLabel.text            = thing.thingName
+        registrationDateLabel.text = "\(thing.createdAt.month)/\(thing.createdAt.day)"
+        self.thing                 = thing
     }
     
     private func setupRemoveButton() {

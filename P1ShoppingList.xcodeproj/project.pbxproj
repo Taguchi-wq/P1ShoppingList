@@ -22,6 +22,7 @@
 		7FBE91B626900FEF005160E2 /* CategoryList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FBE91B526900FEF005160E2 /* CategoryList.storyboard */; };
 		7FBE91BB26901CCA005160E2 /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE91BA26901CCA005160E2 /* Thing.swift */; };
 		7FBE91BD26901EAA005160E2 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE91BC26901EAA005160E2 /* Category.swift */; };
+		7FC3694F26943C1000568631 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC3694E26943C1000568631 /* Date+Extension.swift */; };
 		C311C3DB983EED6857346423 /* Pods_P1ShoppingList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70EDB0277C2EC4F573911B2E /* Pods_P1ShoppingList.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		7FBE91B526900FEF005160E2 /* CategoryList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoryList.storyboard; sourceTree = "<group>"; };
 		7FBE91BA26901CCA005160E2 /* Thing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
 		7FBE91BC26901EAA005160E2 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		7FC3694E26943C1000568631 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		B7C392795930423B65D7BD13 /* Pods-P1ShoppingList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P1ShoppingList.debug.xcconfig"; path = "Target Support Files/Pods-P1ShoppingList/Pods-P1ShoppingList.debug.xcconfig"; sourceTree = "<group>"; };
 		C8CE3E9E3F5CE6F62E445243 /* Pods-P1ShoppingList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P1ShoppingList.release.xcconfig"; path = "Target Support Files/Pods-P1ShoppingList/Pods-P1ShoppingList.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +87,7 @@
 				7FBE91B726901BB6005160E2 /* Model */,
 				7F8CB2FF268F5E20009AE3CB /* View */,
 				7F8CB302268F5E66009AE3CB /* Controller */,
+				7FC3694D26943BE000568631 /* Extension */,
 				7F8CB2E1268F5208009AE3CB /* AppDelegate.swift */,
 				7F8CB2E8268F520A009AE3CB /* Assets.xcassets */,
 				7F8CB2ED268F520A009AE3CB /* Info.plist */,
@@ -155,6 +158,14 @@
 				7FAEB866269072E200D29D83 /* Entity */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7FC3694D26943BE000568631 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7FC3694E26943C1000568631 /* Date+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		817D2D2700C19656027FB88B /* Frameworks */ = {
@@ -293,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FAEB8732691F92600D29D83 /* Alert.swift in Sources */,
+				7FC3694F26943C1000568631 /* Date+Extension.swift in Sources */,
 				7FBE91B426900FD4005160E2 /* CategoryListViewController.swift in Sources */,
 				7FAEB86A26907F7800D29D83 /* RealmManager.swift in Sources */,
 				7F8CB2F4268F530E009AE3CB /* ShoppingListViewController.swift in Sources */,

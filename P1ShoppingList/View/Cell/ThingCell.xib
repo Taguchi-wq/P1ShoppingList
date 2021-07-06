@@ -21,17 +21,17 @@
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QwT-FE-sL1">
                         <rect key="frame" x="20" y="5" width="248" height="52.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NR6-n7-dKi">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="52.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NR6-n7-dKi">
+                                <rect key="frame" x="0.0" y="0.0" width="55" height="52.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="if5-na-B1q"/>
+                                    <constraint firstAttribute="width" constant="55" id="if5-na-B1q"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pju-YA-8gA">
-                                <rect key="frame" x="50" y="0.0" width="145.5" height="52.5"/>
+                                <rect key="frame" x="55" y="0.0" width="140.5" height="52.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -61,7 +61,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="registrationDate" destination="NR6-n7-dKi" id="82l-Td-DsS"/>
+                <outlet property="registrationDateLabel" destination="NR6-n7-dKi" id="ebd-8g-ZdU"/>
                 <outlet property="removeButton" destination="NnF-UQ-6mx" id="tQd-60-zXy"/>
                 <outlet property="thingLabel" destination="pju-YA-8gA" id="APg-nH-MfW"/>
             </connections>
