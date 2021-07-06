@@ -66,9 +66,10 @@ class NewRegistrationViewController: UIViewController {
         if thingIsEmpty {
             Alert.presentPleaseWrite(on: self)
         } else {
-            let thing = thingTextField.text!
-            writeThingInRealm(thing)
+            let thingName = thingTextField.text!
+            writeThingInRealm(thingName)
             thingTextField.text = String()
+            Alert.presentAdd(on: self, thingName: thingName, handler: nil)
             shoppingHistoryListTableView.reloadData()
         }
     }
