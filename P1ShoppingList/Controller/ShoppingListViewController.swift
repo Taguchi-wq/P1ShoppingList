@@ -11,22 +11,22 @@ import RealmSwift
 
 class ShoppingListViewController: UIViewController {
     
-    private let reuseIdentifier = "ThingCell"
+    private let reuseIdentifier = "productCell"
     private let realmManager = RealmManager()
-    private var things: Results<Thing>!
+    private var products: Results<Product>!
     
 
     @IBOutlet private weak var shoppingListTableView: UITableView!
-    @IBOutlet private weak var addThingButton: UIButton!
+    @IBOutlet private weak var addProductButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupShoppingListTableView()
-        setupAddThingButton()
+        setupAddProductButton()
         writeCategoriesInRealm()
-        appendThingsNotDeleted()
+        appendProductsNotDeleted()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,8 +42,8 @@ class ShoppingListViewController: UIViewController {
                                        forCellReuseIdentifier: reuseIdentifier)
     }
     
-    private func setupAddThingButton() {
-        addThingButton.layer.cornerRadius = addThingButton.bounds.height / 2
+    private func setupAddProductButton() {
+        addProductButton.layer.cornerRadius = addProductButton.bounds.height / 2
     }
     
     private func transitionToCategoryVC() {
@@ -57,19 +57,19 @@ class ShoppingListViewController: UIViewController {
             let categories = ["日用品", "食品", "衣服", "その他"]
             _ = categories.map {
                 let category = Category()
-                category.category = $0
+                category.categoryName = $0
                 realmManager.writeCategory(category)
             }
         }
     }
     
-    private func appendThingsNotDeleted() {
-        guard let things = realmManager.loadThingsNotDeleted() else { return }
-        self.things = things
+    private func appendProductsNotDeleted() {
+        guard let products = realmManager.loadProductsNotDeleted() else { return }
+        self.products = products
     }
     
     
-    @IBAction private func tappedAddThingButton(_ sender: UIButton) {
+    @IBAction private func tappedAddProductButton(_ sender: UIButton) {
         transitionToCategoryVC()
     }
     
@@ -78,15 +78,15 @@ class ShoppingListViewController: UIViewController {
 extension ShoppingListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard things != nil else { return 0 }
-        return things.count
+        guard let products = products else { return 0 }
+        return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let thingCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ThingCell
-        thingCell.setupThingCell(thing: things[indexPath.row])
-        thingCell.delegate = self
-        return thingCell
+        let productCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ProductCell
+        productCell.setupProductCell(product: products[indexPath.row])
+        productCell.delegate = self
+        return productCell
     }
     
 }
@@ -99,12 +99,12 @@ extension ShoppingListViewController: UITableViewDelegate {
     
 }
 
-extension ShoppingListViewController: ThingCellDelegate {
+extension ShoppingListViewController: ProductCellDelegate {
     
-    func remove(thing: Thing?) {
-        guard let thing = thing else { return }
-        Alert.presentDelete(on: self, thingName: thing.thingName) { _ in
-            self.realmManager.updateThingDeleteFlag(thing, isDelete: true)
+    func remove(product: Product?) {
+        guard let puroduct = product else { return }
+        Alert.presentDelete(on: self, productName: puroduct.productName) { _ in
+//            self.realmManager.updateThingDeleteFlag(puroduct, isDelete: true)
             DispatchQueue.main.async { self.shoppingListTableView.reloadData() }
         }
     }

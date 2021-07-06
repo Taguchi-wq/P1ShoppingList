@@ -12,13 +12,13 @@ import RealmSwift
 class NewRegistrationViewController: UIViewController {
 
     @IBOutlet private weak var shoppingHistoryListTableView: UITableView!
-    @IBOutlet private weak var thingTextField: UITextField!
-    @IBOutlet private weak var addThingButton: UIButton!
+    @IBOutlet private weak var inputProductTextField: UITextField!
+    @IBOutlet private weak var addProductButton: UIButton!
     
     
     private let reuseIdentifier = "Cell"
     private let realmManager = RealmManager()
-    private var things: Results<Thing>!
+    private var products: Results<Product>!
     private var categoryID = String()
     
     
@@ -26,8 +26,8 @@ class NewRegistrationViewController: UIViewController {
         super.viewDidLoad()
         
         setupShoppingHistoryListTableView()
-        setupAddThingButton()
-        appendThingsByCategoryID(categoryID)
+        setupAddProductButton()
+        appendProductsByCategoryID(categoryID)
     }
     
     func setupProperties(categoryID: String) {
@@ -39,37 +39,37 @@ class NewRegistrationViewController: UIViewController {
         shoppingHistoryListTableView.delegate   = self
     }
     
-    private func setupAddThingButton() {
-        addThingButton.layer.cornerRadius = addThingButton.bounds.height / 2
+    private func setupAddProductButton() {
+        addProductButton.layer.cornerRadius = addProductButton.bounds.height / 2
     }
     
-    private func appendThingsByCategoryID(_ categoryID: String) {
-        guard let things = realmManager.loadThingByCategoryID(categoryID) else { return }
-        self.things = things
+    private func appendProductsByCategoryID(_ categoryID: String) {
+        guard let products = realmManager.loadProductByCategoryID(categoryID) else { return }
+        self.products = products
     }
     
-    private func writeThingInRealm(_ thingName: String) {
-        let isDuplicate = realmManager.checkDuplicate(thingName: thingName)
+    private func writeProductInRealm(_ productName: String) {
+        let isDuplicate = realmManager.checkDuplicate(productName: productName)
         if isDuplicate {
-            Alert.presentDuplicate(on: self, thingName: thingName)
+            Alert.presentDuplicate(on: self, productName: productName)
         } else {
-            let thing = Thing()
-            thing.categoryID = categoryID
-            thing.thingName = thingName
-            realmManager.writeThing(thing)
+            let product = Product()
+            product.categoryID = categoryID
+            product.productName = productName
+            realmManager.writeProduct(product)
         }
     }
 
     
-    @IBAction private func tappedAddThingButton(_ sender: UIButton) {
-        let thingIsEmpty = thingTextField.text?.isEmpty ?? false
-        if thingIsEmpty {
+    @IBAction private func tappedAddProductButton(_ sender: UIButton) {
+        let productIsEmpty = inputProductTextField.text?.isEmpty ?? false
+        if productIsEmpty {
             Alert.presentPleaseWrite(on: self)
         } else {
-            let thingName = thingTextField.text!
-            writeThingInRealm(thingName)
-            thingTextField.text = String()
-            Alert.presentAdd(on: self, thingName: thingName, handler: nil)
+            let productName = inputProductTextField.text!
+            writeProductInRealm(productName)
+            inputProductTextField.text = String()
+            Alert.presentAdd(on: self, productName: productName, handler: nil)
             shoppingHistoryListTableView.reloadData()
         }
     }
@@ -78,14 +78,14 @@ class NewRegistrationViewController: UIViewController {
 extension NewRegistrationViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard things != nil else { return 0 }
-        return things.count
+        guard let products = products else { return 0 }
+        return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.textLabel?.text = things[indexPath.row].thingName
-        return cell
+        let productCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        productCell.textLabel?.text = products[indexPath.row].productName
+        return productCell
     }
     
 }
@@ -93,9 +93,9 @@ extension NewRegistrationViewController: UITableViewDataSource {
 extension NewRegistrationViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let thing = things[indexPath.row]
-        Alert.presentAdd(on: self, thingName: thing.thingName) { _ in
-            self.realmManager.updateThingDeleteFlag(thing, isDelete: false)
+        let product = products[indexPath.row]
+        Alert.presentAdd(on: self, productName: product.productName) { _ in
+//            self.realmManager.updateThingDeleteFlag(product, isDelete: false)
         }
     }
     

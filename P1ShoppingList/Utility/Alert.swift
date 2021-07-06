@@ -27,18 +27,18 @@ struct Alert {
         DispatchQueue.main.async { viewController.present(alert, animated: true) }
     }
     
-    static func presentDuplicate(on viewController: UIViewController, thingName: String) {
-        let alert = basicAlert(title: "「\(thingName)」が重複しています。\n書き直して下さい", handler: nil)
+    static func presentDuplicate(on viewController: UIViewController, productName: String) {
+        let alert = basicAlert(title: "「\(productName)」が重複しています。\n書き直して下さい", handler: nil)
         DispatchQueue.main.async { viewController.present(alert, animated: true) }
     }
 
-    static func presentAdd(on viewController: UIViewController, thingName: String, handler: ((UIAlertAction) -> Void)?) {
-        let alert = basicAlert(title: "ショッピングリストに\n「\(thingName)」\nを追加しました", handler: handler)
+    static func presentAdd(on viewController: UIViewController, productName: String, handler: ((UIAlertAction) -> Void)?) {
+        let alert = basicAlert(title: "ショッピングリストに\n「\(productName)」\nを追加しました", handler: handler)
         DispatchQueue.main.async { viewController.present(alert, animated: true) }
     }
     
-    static func presentDelete(on viewController: UIViewController, thingName: String, handler: ((UIAlertAction) -> Void)?) {
-        let alert = twoButtonAlert(title: "本当に\n「\(thingName)」\nを削除しますか?", handler: handler)
+    static func presentDelete(on viewController: UIViewController, productName: String, handler: ((UIAlertAction) -> Void)?) {
+        let alert = twoButtonAlert(title: "本当に\n「\(productName)」\nを削除しますか?", handler: handler)
         DispatchQueue.main.async { viewController.present(alert, animated: true) }
     }
     

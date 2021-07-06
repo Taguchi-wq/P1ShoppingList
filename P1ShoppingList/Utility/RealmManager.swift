@@ -31,42 +31,33 @@ class RealmManager {
         }
     }
     
-    func loadAllThing() -> Results<Thing>? {
-        return loadAll(Thing.self)
+    func loadAllProduct() -> Results<Product>? {
+        return loadAll(Product.self)
     }
     
     func loadAllCategory() -> Results<Category>? {
         return loadAll(Category.self)
     }
     
-    func loadThingByCategoryID(_ categoryID: String) -> Results<Thing>? {
-        return loadAllThing()?.filter("categoryID == '\(categoryID)'")
+    func loadProductByCategoryID(_ categoryID: String) -> Results<Product>? {
+        return loadAllProduct()?.filter("categoryID == '\(categoryID)'")
     }
     
-    func loadThingsNotDeleted() -> Results<Thing>? {
-        return loadAllThing()?.filter("isDelete == false")
+    func loadProductsNotDeleted() -> Results<Product>? {
+        return loadAllProduct()?.filter("isDelete == false")
     }
     
     func writeCategory(_ category: Category) {
         write(category)
     }
     
-    func writeThing(_ thing: Thing) {
-       write(thing)
+    func writeProduct(_ product: Product) {
+       write(product)
     }
     
-    func checkDuplicate(thingName: String) -> Bool {
-        let isDuplicate = loadAllThing()!.filter("thingName == '\(thingName)'").isEmpty ? false : true
+    func checkDuplicate(productName: String) -> Bool {
+        let isDuplicate = loadAllProduct()!.filter("productName == '\(productName)'").isEmpty ? false : true
         return isDuplicate
-    }
-    
-    func updateThingDeleteFlag(_ thing: Thing, isDelete: Bool) {
-        do {
-            let realm = try Realm()
-            try realm.write { thing.isDelete = isDelete }
-        } catch {
-            print(error)
-        }
     }
     
 }

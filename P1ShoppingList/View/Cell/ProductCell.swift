@@ -1,24 +1,24 @@
 //
-//  ThingCell.swift
+//  ProductCell.swift
 //  P1ShoppingList
 //
-//  Created by cmStudent on 2021/07/02.
+//  Created by cmStudent on 2021/07/06.
 //  Copyright © 2021 cmStudent. All rights reserved.
 //
 
 import UIKit
 import RealmSwift
 
-class ThingCell: UITableViewCell {
-    
+class ProductCell: UITableViewCell {
+
     @IBOutlet private weak var registrationDateLabel: UILabel!
-    @IBOutlet private weak var thingLabel: UILabel!
+    @IBOutlet private weak var productLabel: UILabel!
     @IBOutlet private weak var removeButton: UIButton!
     
     
     private let realmManager = RealmManager()
-    private var thing: Thing?
-    weak var delegate: ThingCellDelegate?
+    private var product: Product?
+    weak var delegate: ProductCellDelegate?
     
     
     override func awakeFromNib() {
@@ -26,15 +26,15 @@ class ThingCell: UITableViewCell {
         
         setupRemoveButton()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func setupThingCell(thing: Thing) {
-        thingLabel.text            = thing.thingName
-        registrationDateLabel.text = "\(thing.createdAt.month)/\(thing.createdAt.day)"
-        self.thing                 = thing
+    func setupProductCell(product: Product) {
+        productLabel.text            = product.productName
+//        registrationDateLabel.text = "\(product.createdAt.month)/\(product.createdAt.day)"
+        self.product                 = product
     }
     
     private func setupRemoveButton() {
@@ -43,11 +43,11 @@ class ThingCell: UITableViewCell {
     
     
     @IBAction private func tappedRemoveButton(_ sender: UIButton) {
-        delegate?.remove(thing: thing)
+        delegate?.remove(product: product)
     }
     
 }
 
-protocol ThingCellDelegate: class {
-    func remove(thing: Thing?)
+protocol ProductCellDelegate: class {
+    func remove(product: Product?)
 }

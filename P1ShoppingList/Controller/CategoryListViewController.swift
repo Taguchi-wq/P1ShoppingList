@@ -49,13 +49,13 @@ class CategoryListViewController: UIViewController {
 extension CategoryListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard categories != nil else { return 0 }
+        guard let categories = categories else { return 0 }
         return categories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let categoryCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        categoryCell.textLabel?.text = categories[indexPath.row].category
+        categoryCell.textLabel?.text = categories[indexPath.row].categoryName
         return categoryCell
     }
     
