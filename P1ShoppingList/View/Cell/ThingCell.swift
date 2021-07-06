@@ -11,6 +11,7 @@ import RealmSwift
 
 class ThingCell: UITableViewCell {
     
+    @IBOutlet private weak var registrationDate: UILabel!
     @IBOutlet private weak var thingLabel: UILabel!
     @IBOutlet private weak var removeButton: UIButton!
     

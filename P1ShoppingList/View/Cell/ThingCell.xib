@@ -12,23 +12,32 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ThingCell" rowHeight="63" id="KGk-i7-Jjw" customClass="ThingCell" customModule="P1ShoppingList" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="272" height="63"/>
+            <rect key="frame" x="0.0" y="0.0" width="288" height="63"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="272" height="62.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="288" height="62.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QwT-FE-sL1">
-                        <rect key="frame" x="20" y="5" width="232" height="52.5"/>
+                        <rect key="frame" x="20" y="5" width="248" height="52.5"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NR6-n7-dKi">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="52.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="if5-na-B1q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pju-YA-8gA">
-                                <rect key="frame" x="0.0" y="0.0" width="179.5" height="52.5"/>
+                                <rect key="frame" x="50" y="0.0" width="145.5" height="52.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnF-UQ-6mx">
-                                <rect key="frame" x="179.5" y="0.0" width="52.5" height="52.5"/>
+                                <rect key="frame" x="195.5" y="0.0" width="52.5" height="52.5"/>
                                 <color key="backgroundColor" red="0.98470920324325562" green="0.096305608095401563" blue="0.098676889327108788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="NnF-UQ-6mx" secondAttribute="height" multiplier="1:1" id="kEg-CH-adK"/>
@@ -52,10 +61,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="registrationDate" destination="NR6-n7-dKi" id="82l-Td-DsS"/>
                 <outlet property="removeButton" destination="NnF-UQ-6mx" id="tQd-60-zXy"/>
                 <outlet property="thingLabel" destination="pju-YA-8gA" id="APg-nH-MfW"/>
             </connections>
-            <point key="canvasLocation" x="104" y="182"/>
+            <point key="canvasLocation" x="91.200000000000003" y="181.25937031484258"/>
         </tableViewCell>
     </objects>
 </document>
