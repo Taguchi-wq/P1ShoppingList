@@ -103,7 +103,7 @@ extension ShoppingListViewController: NeededProductCellDelegate {
     
     func remove(neededProduct: NeededProduct?) {
         guard let neededProduct = neededProduct else { return }
-        guard let product = realmShared.loadProductByPrimaryKey(neededProduct.productID) else { return }
+        guard let product = realmShared.loadByPrimaryKey(Product.self, primaryKey: neededProduct.productID) else { return }
         Alert.presentDelete(on: self, productName: product.productName) { _ in
             self.realmShared.deleteNeededProduct(neededProduct)
             DispatchQueue.main.async { self.shoppingListTableView.reloadData() }

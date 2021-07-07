@@ -32,7 +32,7 @@ class NeededProductCell: UITableViewCell {
     }
     
     func setupNeededProductCell(neededProduct: NeededProduct) {
-        neededProductLabel.text    = realmShared.loadProductByPrimaryKey(neededProduct.productID)?.productName
+        neededProductLabel.text    = realmShared.loadByPrimaryKey(Product.self, primaryKey: neededProduct.productID)?.productName
         registrationDateLabel.text = "\(neededProduct.registrationDate.month)/\(neededProduct.registrationDate.day)"
         self.neededProduct         = neededProduct
     }

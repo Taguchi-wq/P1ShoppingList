@@ -20,7 +20,7 @@ final class RealmManager {
         return realm.objects(T.self)
     }
     
-    private func loadByPrimaryKey<T: Object>(_ object: T.Type, _ primaryKey: String) -> T? {
+    func loadByPrimaryKey<T: Object>(_ object: T.Type, primaryKey: String) -> T? {
         return realm.object(ofType: T.self, forPrimaryKey: primaryKey)
     }
     
@@ -40,16 +40,8 @@ final class RealmManager {
         return loadAll(Product.self)?.filter("categoryID == '\(categoryID)'")
     }
     
-    func loadProductByPrimaryKey(_ primaryKey: String) -> Product? {
-        return loadByPrimaryKey(Product.self, primaryKey)
-    }
-    
     func loadNeededProductByProductID(_ productID: String) -> NeededProduct? {
         return loadAll(NeededProduct.self)?.filter("productID == '\(productID)'").last
-    }
-    
-    func loadNeededProductByPrimaryKey(_ primaryKey: String) -> NeededProduct? {
-        return loadByPrimaryKey(NeededProduct.self, primaryKey)
     }
     
     func writeCategory(_ category: Category) {
@@ -81,7 +73,7 @@ final class RealmManager {
     }
     
     func checkDeleted(neededProduct: NeededProduct) -> Bool {
-        let neededProduct = loadNeededProductByPrimaryKey(neededProduct.neededProductID)
+        let neededProduct = loadByPrimaryKey(NeededProduct.self, primaryKey: neededProduct.neededProductID)
         let isDeleted = neededProduct?.boughtDate == nil ? false : true
         return isDeleted
     }
