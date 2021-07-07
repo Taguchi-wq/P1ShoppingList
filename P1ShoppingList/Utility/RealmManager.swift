@@ -74,6 +74,17 @@ class RealmManager {
         write(neededProduct)
     }
     
+    func deleteNeededProduct(_ neededProduct: NeededProduct) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                neededProduct.boughtDate = Date()
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
     func checkDuplicate(productName: String) -> Bool {
         let isDuplicate = loadAllProduct()!.filter("productName == '\(productName)'").isEmpty ? false : true
         return isDuplicate

@@ -43,11 +43,11 @@ class NeededProductCell: UITableViewCell {
     
     
     @IBAction private func tappedRemoveButton(_ sender: UIButton) {
-        //        delegate?.remove(product: Product)
+        delegate?.remove(neededProduct: neededProduct)
     }
     
 }
 
 protocol NeededProductCellDelegate: class {
-    func remove(product: Product?)
+    func remove(neededProduct: NeededProduct?)
 }
