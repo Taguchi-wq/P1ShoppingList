@@ -39,7 +39,7 @@ class CategoryListViewController: UIViewController {
     }
     
     private func appendCategories() {
-        guard let categories = realmShared.loadAllCategory() else { return }
+        guard let categories = realmShared.loadAll(Category.self) else { return }
         self.categories = categories
     }
 

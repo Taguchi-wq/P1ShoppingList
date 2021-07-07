@@ -52,7 +52,7 @@ class ShoppingListViewController: UIViewController {
     }
     
     private func writeCategoriesInRealm() {
-        guard let categories = realmShared.loadAllCategory() else { return }
+        guard let categories = realmShared.loadAll(Category.self) else { return }
         if categories.isEmpty {
             let categories = ["日用品", "食品", "衣服", "その他"]
             _ = categories.map {

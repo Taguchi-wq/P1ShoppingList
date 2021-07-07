@@ -16,7 +16,7 @@ final class RealmManager {
     private let realm = try! Realm()
     
     
-    private func loadAll<T: Object>(_ object: T.Type) -> Results<T>? {
+    func loadAll<T: Object>(_ object: T.Type) -> Results<T>? {
         return realm.objects(T.self)
     }
     
@@ -32,24 +32,12 @@ final class RealmManager {
         }
     }
     
-    func loadAllProduct() -> Results<Product>? {
-        return loadAll(Product.self)
-    }
-    
-    func loadAllCategory() -> Results<Category>? {
-        return loadAll(Category.self)
-    }
-    
-    func loadAllNeededProduct() -> Results<NeededProduct>? {
-        return loadAll(NeededProduct.self)
-    }
-    
     func loadNeededProduct() -> Results<NeededProduct>? {
         return loadAll(NeededProduct.self)?.filter("boughtDate == nil")
     }
     
     func loadProductByCategoryID(_ categoryID: String) -> Results<Product>? {
-        return loadAllProduct()?.filter("categoryID == '\(categoryID)'")
+        return loadAll(Product.self)?.filter("categoryID == '\(categoryID)'")
     }
     
     func loadProductByPrimaryKey(_ primaryKey: String) -> Product? {
@@ -57,7 +45,7 @@ final class RealmManager {
     }
     
     func loadNeededProductByProductID(_ productID: String) -> NeededProduct? {
-        return loadAllNeededProduct()?.filter("productID == '\(productID)'").last
+        return loadAll(NeededProduct.self)?.filter("productID == '\(productID)'").last
     }
     
     func loadNeededProductByPrimaryKey(_ primaryKey: String) -> NeededProduct? {
@@ -88,7 +76,7 @@ final class RealmManager {
     }
     
     func checkDuplicate(productName: String) -> Bool {
-        let isDuplicate = loadAllProduct()!.filter("productName == '\(productName)'").isEmpty ? false : true
+        let isDuplicate = loadAll(Product.self)!.filter("productName == '\(productName)'").isEmpty ? false : true
         return isDuplicate
     }
     
