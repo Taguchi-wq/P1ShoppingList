@@ -11,9 +11,9 @@ import RealmSwift
 
 class ShoppingListViewController: UIViewController {
     
-    private let reuseIdentifier = "productCell"
+    private let reuseIdentifier = "NeededProductCell"
     private let realmManager = RealmManager()
-    private var products: Results<Product>!
+    private var neededProducts: Results<NeededProduct>!
     
 
     @IBOutlet private weak var shoppingListTableView: UITableView!
@@ -26,7 +26,7 @@ class ShoppingListViewController: UIViewController {
         setupShoppingListTableView()
         setupAddProductButton()
         writeCategoriesInRealm()
-        appendProductsNotDeleted()
+        appendNeededProducts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,9 +63,9 @@ class ShoppingListViewController: UIViewController {
         }
     }
     
-    private func appendProductsNotDeleted() {
-        guard let products = realmManager.loadProductsNotDeleted() else { return }
-        self.products = products
+    private func appendNeededProducts() {
+        guard let neededProducts = realmManager.loadNeededProduct() else { return }
+        self.neededProducts = neededProducts
     }
     
     
@@ -78,15 +78,15 @@ class ShoppingListViewController: UIViewController {
 extension ShoppingListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let products = products else { return 0 }
-        return products.count
+        guard let neededProducts = neededProducts else { return 0 }
+        return neededProducts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let productCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ProductCell
-        productCell.setupProductCell(product: products[indexPath.row])
-        productCell.delegate = self
-        return productCell
+        let neededProductCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! NeededProductCell
+        neededProductCell.setupNeededProductCell(neededProduct: neededProducts[indexPath.row])
+        neededProductCell.delegate = self
+        return neededProductCell
     }
     
 }
@@ -99,7 +99,7 @@ extension ShoppingListViewController: UITableViewDelegate {
     
 }
 
-extension ShoppingListViewController: ProductCellDelegate {
+extension ShoppingListViewController: NeededProductCellDelegate {
     
     func remove(product: Product?) {
         guard let puroduct = product else { return }

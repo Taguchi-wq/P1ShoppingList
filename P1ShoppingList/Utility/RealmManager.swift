@@ -22,6 +22,17 @@ class RealmManager {
         return nil
     }
     
+    private func loadByPrimaryKey<T: Object>(_ object: T.Type, _ primaryKey: String) -> T? {
+        do {
+            let realm = try Realm()
+            return realm.object(ofType: T.self, forPrimaryKey: primaryKey)
+        } catch {
+            print(error)
+        }
+        
+        return nil
+    }
+    
     private func write<T: Object>(_ object: T) {
         do {
             let realm = try Realm()
@@ -39,12 +50,16 @@ class RealmManager {
         return loadAll(Category.self)
     }
     
+    func loadNeededProduct() -> Results<NeededProduct>? {
+        return loadAll(NeededProduct.self)?.filter("boughtDate == nil")
+    }
+    
     func loadProductByCategoryID(_ categoryID: String) -> Results<Product>? {
         return loadAllProduct()?.filter("categoryID == '\(categoryID)'")
     }
     
-    func loadProductsNotDeleted() -> Results<Product>? {
-        return loadAllProduct()?.filter("isDelete == false")
+    func loadProductByPrimaryKey(_ primaryKey: String) -> Product? {
+        return loadByPrimaryKey(Product.self, primaryKey)
     }
     
     func writeCategory(_ category: Category) {
@@ -53,6 +68,10 @@ class RealmManager {
     
     func writeProduct(_ product: Product) {
        write(product)
+    }
+    
+    func writeNeededProduct(_ neededProduct: NeededProduct) {
+        write(neededProduct)
     }
     
     func checkDuplicate(productName: String) -> Bool {

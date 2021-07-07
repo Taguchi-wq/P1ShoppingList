@@ -57,6 +57,10 @@ class NewRegistrationViewController: UIViewController {
             product.categoryID = categoryID
             product.productName = productName
             realmManager.writeProduct(product)
+            
+            let neededProduct = NeededProduct()
+            neededProduct.productID = product.productID
+            realmManager.writeNeededProduct(neededProduct)
         }
     }
 

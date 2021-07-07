@@ -10,10 +10,10 @@ import Foundation
 import RealmSwift
 
 class NeededProduct: Object {
-    @objc dynamic var neededProductID  = NSUUID().uuidString
-    @objc dynamic var priductID        = String()
-    @objc dynamic var registrationDate = Date()
-    @objc dynamic var boughtDate       = Date()
+    @objc dynamic var neededProductID   = NSUUID().uuidString
+    @objc dynamic var productID         = String()
+    @objc dynamic var registrationDate  = Date()
+    @objc dynamic var boughtDate: Date? = nil
     
     override static func primaryKey() -> String? {
         return "neededProductID"
