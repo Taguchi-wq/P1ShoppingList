@@ -50,6 +50,10 @@ class RealmManager {
         return loadAll(Category.self)
     }
     
+    func loadAllNeededProduct() -> Results<NeededProduct>? {
+        return loadAll(NeededProduct.self)
+    }
+    
     func loadNeededProduct() -> Results<NeededProduct>? {
         return loadAll(NeededProduct.self)?.filter("boughtDate == nil")
     }
@@ -60,6 +64,15 @@ class RealmManager {
     
     func loadProductByPrimaryKey(_ primaryKey: String) -> Product? {
         return loadByPrimaryKey(Product.self, primaryKey)
+    }
+    
+    func loadNeededProductByProductID(_ productID: String) -> NeededProduct? {
+        print(loadAllNeededProduct()?.filter("productID == '\(productID)'"))
+        return loadAllNeededProduct()?.filter("productID == '\(productID)'").last
+    }
+    
+    func loadNeededProductByPrimaryKey(_ primaryKey: String) -> NeededProduct? {
+        return loadByPrimaryKey(NeededProduct.self, primaryKey)
     }
     
     func writeCategory(_ category: Category) {
@@ -88,6 +101,12 @@ class RealmManager {
     func checkDuplicate(productName: String) -> Bool {
         let isDuplicate = loadAllProduct()!.filter("productName == '\(productName)'").isEmpty ? false : true
         return isDuplicate
+    }
+    
+    func checkDeleted(neededProduct: NeededProduct) -> Bool {
+        let neededProduct = loadNeededProductByPrimaryKey(neededProduct.neededProductID)
+        let isDeleted = neededProduct?.boughtDate == nil ? false : true
+        return isDeleted
     }
     
 }

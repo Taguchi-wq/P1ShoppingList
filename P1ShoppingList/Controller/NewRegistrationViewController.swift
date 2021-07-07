@@ -73,7 +73,7 @@ class NewRegistrationViewController: UIViewController {
             let productName = inputProductTextField.text!
             writeProductInRealm(productName)
             inputProductTextField.text = String()
-            Alert.presentAdd(on: self, productName: productName, handler: nil)
+            Alert.presentAdd(on: self, productName: productName)
             shoppingHistoryListTableView.reloadData()
         }
     }
@@ -98,8 +98,16 @@ extension NewRegistrationViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let product = products[indexPath.row]
-        Alert.presentAdd(on: self, productName: product.productName) { _ in
-//            self.realmManager.updateThingDeleteFlag(product, isDelete: false)
+        
+        guard let neededProduct = self.realmManager.loadNeededProductByProductID(product.productID) else { return }
+        let isDeleted = realmManager.checkDeleted(neededProduct: neededProduct)
+        if isDeleted {
+            let neededProduct = NeededProduct()
+            neededProduct.productID = product.productID
+            self.realmManager.writeNeededProduct(neededProduct)
+            Alert.presentAdd(on: self, productName: product.productName)
+        } else {
+            Alert.presentDuplicateNeededProduct(on: self, productName: product.productName)
         }
     }
     

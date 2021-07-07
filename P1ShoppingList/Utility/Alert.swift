@@ -32,8 +32,13 @@ struct Alert {
         DispatchQueue.main.async { viewController.present(alert, animated: true) }
     }
 
-    static func presentAdd(on viewController: UIViewController, productName: String, handler: ((UIAlertAction) -> Void)?) {
-        let alert = basicAlert(title: "ショッピングリストに\n「\(productName)」\nを追加しました", handler: handler)
+    static func presentAdd(on viewController: UIViewController, productName: String) {
+        let alert = basicAlert(title: "ショッピングリストに\n「\(productName)」\nを追加しました", handler: nil)
+        DispatchQueue.main.async { viewController.present(alert, animated: true) }
+    }
+    
+    static func presentDuplicateNeededProduct(on viewController: UIViewController, productName: String) {
+        let alert = basicAlert(title: "「\(productName)」はショッピングリストにあります。", handler: nil)
         DispatchQueue.main.async { viewController.present(alert, animated: true) }
     }
     
