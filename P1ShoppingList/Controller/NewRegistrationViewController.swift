@@ -17,7 +17,7 @@ class NewRegistrationViewController: UIViewController {
     
     
     private let reuseIdentifier = "Cell"
-    private let realmManager = RealmManager()
+    private let realmShared = RealmManager.shared
     private var products: Results<Product>!
     private var categoryID = String()
     
@@ -44,23 +44,23 @@ class NewRegistrationViewController: UIViewController {
     }
     
     private func appendProductsByCategoryID(_ categoryID: String) {
-        guard let products = realmManager.loadProductByCategoryID(categoryID) else { return }
+        guard let products = realmShared.loadProductByCategoryID(categoryID) else { return }
         self.products = products
     }
     
     private func writeProductInRealm(_ productName: String) {
-        let isDuplicate = realmManager.checkDuplicate(productName: productName)
+        let isDuplicate = realmShared.checkDuplicate(productName: productName)
         if isDuplicate {
             Alert.presentDuplicate(on: self, productName: productName)
         } else {
             let product = Product()
             product.categoryID = categoryID
             product.productName = productName
-            realmManager.writeProduct(product)
+            realmShared.writeProduct(product)
             
             let neededProduct = NeededProduct()
             neededProduct.productID = product.productID
-            realmManager.writeNeededProduct(neededProduct)
+            realmShared.writeNeededProduct(neededProduct)
         }
     }
 
@@ -99,12 +99,12 @@ extension NewRegistrationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let product = products[indexPath.row]
         
-        guard let neededProduct = self.realmManager.loadNeededProductByProductID(product.productID) else { return }
-        let isDeleted = realmManager.checkDeleted(neededProduct: neededProduct)
+        guard let neededProduct = self.realmShared.loadNeededProductByProductID(product.productID) else { return }
+        let isDeleted = realmShared.checkDeleted(neededProduct: neededProduct)
         if isDeleted {
             let neededProduct = NeededProduct()
             neededProduct.productID = product.productID
-            self.realmManager.writeNeededProduct(neededProduct)
+            self.realmShared.writeNeededProduct(neededProduct)
             Alert.presentAdd(on: self, productName: product.productName)
         } else {
             Alert.presentDuplicateNeededProduct(on: self, productName: product.productName)

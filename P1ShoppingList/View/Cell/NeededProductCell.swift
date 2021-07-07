@@ -16,7 +16,7 @@ class NeededProductCell: UITableViewCell {
     @IBOutlet private weak var removeButton: UIButton!
     
     
-    private let realmManager = RealmManager()
+    private let realmShared = RealmManager.shared
     private var neededProduct: NeededProduct?
     weak var delegate: NeededProductCellDelegate?
     
@@ -32,7 +32,7 @@ class NeededProductCell: UITableViewCell {
     }
     
     func setupNeededProductCell(neededProduct: NeededProduct) {
-        neededProductLabel.text    = realmManager.loadProductByPrimaryKey(neededProduct.productID)?.productName
+        neededProductLabel.text    = realmShared.loadProductByPrimaryKey(neededProduct.productID)?.productName
         registrationDateLabel.text = "\(neededProduct.registrationDate.month)/\(neededProduct.registrationDate.day)"
         self.neededProduct         = neededProduct
     }

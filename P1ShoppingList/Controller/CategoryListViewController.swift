@@ -15,7 +15,7 @@ class CategoryListViewController: UIViewController {
     
     
     private let identifier = "categoryCell"
-    private let realmManager = RealmManager()
+    private let realmShared = RealmManager.shared
     private var categories: Results<Category>!
     
     
@@ -39,7 +39,7 @@ class CategoryListViewController: UIViewController {
     }
     
     private func appendCategories() {
-        guard let categories = realmManager.loadAllCategory() else { return }
+        guard let categories = realmShared.loadAllCategory() else { return }
         self.categories = categories
     }
 

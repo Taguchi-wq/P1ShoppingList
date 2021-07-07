@@ -12,7 +12,7 @@ import RealmSwift
 class ShoppingListViewController: UIViewController {
     
     private let reuseIdentifier = "NeededProductCell"
-    private let realmManager = RealmManager()
+    private let realmShared = RealmManager.shared
     private var neededProducts: Results<NeededProduct>!
     
 
@@ -52,19 +52,19 @@ class ShoppingListViewController: UIViewController {
     }
     
     private func writeCategoriesInRealm() {
-        guard let categories = realmManager.loadAllCategory() else { return }
+        guard let categories = realmShared.loadAllCategory() else { return }
         if categories.isEmpty {
             let categories = ["日用品", "食品", "衣服", "その他"]
             _ = categories.map {
                 let category = Category()
                 category.categoryName = $0
-                realmManager.writeCategory(category)
+                realmShared.writeCategory(category)
             }
         }
     }
     
     private func appendNeededProducts() {
-        guard let neededProducts = realmManager.loadNeededProduct() else { return }
+        guard let neededProducts = realmShared.loadNeededProduct() else { return }
         self.neededProducts = neededProducts
     }
     
@@ -103,9 +103,9 @@ extension ShoppingListViewController: NeededProductCellDelegate {
     
     func remove(neededProduct: NeededProduct?) {
         guard let neededProduct = neededProduct else { return }
-        guard let product = realmManager.loadProductByPrimaryKey(neededProduct.productID) else { return }
+        guard let product = realmShared.loadProductByPrimaryKey(neededProduct.productID) else { return }
         Alert.presentDelete(on: self, productName: product.productName) { _ in
-            self.realmManager.deleteNeededProduct(neededProduct)
+            self.realmShared.deleteNeededProduct(neededProduct)
             DispatchQueue.main.async { self.shoppingListTableView.reloadData() }
         }
     }

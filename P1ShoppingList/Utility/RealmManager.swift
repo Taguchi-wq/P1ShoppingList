@@ -9,33 +9,23 @@
 import Foundation
 import RealmSwift
 
-class RealmManager {
+final class RealmManager {
+    
+    private init() {}
+    static let shared = RealmManager()
+    private let realm = try! Realm()
+    
     
     private func loadAll<T: Object>(_ object: T.Type) -> Results<T>? {
-        do {
-            let realm = try Realm()
-            return realm.objects(T.self)
-        } catch {
-            print(error)
-        }
-        
-        return nil
+        return realm.objects(T.self)
     }
     
     private func loadByPrimaryKey<T: Object>(_ object: T.Type, _ primaryKey: String) -> T? {
-        do {
-            let realm = try Realm()
-            return realm.object(ofType: T.self, forPrimaryKey: primaryKey)
-        } catch {
-            print(error)
-        }
-        
-        return nil
+        return realm.object(ofType: T.self, forPrimaryKey: primaryKey)
     }
     
     private func write<T: Object>(_ object: T) {
         do {
-            let realm = try Realm()
             try realm.write { realm.add(object) }
         } catch {
             print(error)
@@ -67,7 +57,6 @@ class RealmManager {
     }
     
     func loadNeededProductByProductID(_ productID: String) -> NeededProduct? {
-        print(loadAllNeededProduct()?.filter("productID == '\(productID)'"))
         return loadAllNeededProduct()?.filter("productID == '\(productID)'").last
     }
     
