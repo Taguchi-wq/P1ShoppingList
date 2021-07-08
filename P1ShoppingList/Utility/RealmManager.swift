@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-// Realmを管理するclass
+/// Realmを管理するclass
 final class RealmManager {
     
     // MARK: - initializer
