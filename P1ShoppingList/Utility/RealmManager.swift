@@ -93,8 +93,7 @@ final class RealmManager {
     
     /// 必要なものが削除(購入)されたかを確認する
     func checkDeleted(neededProduct: NeededProduct) -> Bool {
-        let neededProduct = loadByPrimaryKey(NeededProduct.self, primaryKey: neededProduct.neededProductID)
-        let isDeleted = neededProduct?.boughtDate == nil ? false : true
+        let isDeleted = neededProduct.boughtDate == nil ? false : true
         return isDeleted
     }
     
