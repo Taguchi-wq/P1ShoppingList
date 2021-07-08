@@ -87,6 +87,7 @@ class ShoppingListViewController: UIViewController {
     }
     
     
+    // MARK: - @IBActions
     /// addProductButtonを押した時の処理
     @IBAction private func tappedAddProductButton(_ sender: UIButton) {
         transitionToCategoryVC()
