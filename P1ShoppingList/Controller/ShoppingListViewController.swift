@@ -10,16 +10,26 @@ import UIKit
 import RealmSwift
 
 class ShoppingListViewController: UIViewController {
-    
-    private let reuseIdentifier = "NeededProductCell"
-    private let realmShared = RealmManager.shared
-    private var neededProducts: Results<NeededProduct>!
-    
 
+    // MARK: - @IBOutlets
+    /// ショッピングリストに追加したモノを表示するUITableView
     @IBOutlet private weak var shoppingListTableView: UITableView!
+    /// モノを追加するUIButton
     @IBOutlet private weak var addProductButton: UIButton!
     
     
+    // MARK: - Properties
+    /// NeededProductCellのidentifier
+    private let neededProductCellIdentifier = "NeededProductCell"
+    /// CategoryViewControllerのidentifier
+    private let categoryListVCIdentifier = "categoryListVC"
+    /// RealmManagerのshared
+    private let realmShared = RealmManager.shared
+    /// NeededProductを格納するResults
+    private var neededProducts: Results<NeededProduct>!
+    
+    
+    // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,23 +45,30 @@ class ShoppingListViewController: UIViewController {
         shoppingListTableView.reloadData()
     }
     
+    
+    // MARK: - Private Methods
+    /// ShoppingListTableViewを設定する
     private func setupShoppingListTableView() {
         shoppingListTableView.dataSource = self
         shoppingListTableView.delegate   = self
-        shoppingListTableView.register(UINib(nibName: reuseIdentifier, bundle: nil),
-                                       forCellReuseIdentifier: reuseIdentifier)
+        shoppingListTableView.register(UINib(nibName: neededProductCellIdentifier, bundle: nil),
+                                       forCellReuseIdentifier: neededProductCellIdentifier)
     }
     
+    /// addProductButtonを設定する
     private func setupAddProductButton() {
         addProductButton.layer.cornerRadius = addProductButton.bounds.height / 2
     }
     
+    /// CategoryViewControllerに遷移する
     private func transitionToCategoryVC() {
-        let categoryVC = storyboard?.instantiateViewController(withIdentifier: "categoryListVC") as! CategoryListViewController
+        let categoryVC = storyboard?.instantiateViewController(withIdentifier: categoryListVCIdentifier) as! CategoryListViewController
         navigationController?.pushViewController(categoryVC, animated: true)
     }
     
+    /// Realmにカテゴリーを保存する
     private func writeCategoriesInRealm() {
+        // Realmにカテゴリーがなければ書き込む。あれば何もしない。
         guard let categories = realmShared.loadAll(Category.self) else { return }
         if categories.isEmpty {
             let categories = ["日用品", "食品", "衣服", "その他"]
@@ -63,18 +80,22 @@ class ShoppingListViewController: UIViewController {
         }
     }
     
+    /// 必要なモノをneededProducts配列に追加する
     private func appendNeededProducts() {
         guard let neededProducts = realmShared.loadNeededProduct() else { return }
         self.neededProducts = neededProducts
     }
     
     
+    /// addProductButtonを押した時の処理
     @IBAction private func tappedAddProductButton(_ sender: UIButton) {
         transitionToCategoryVC()
     }
     
 }
 
+
+// MARK: - UITableViewDataSource
 extension ShoppingListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,7 +104,7 @@ extension ShoppingListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let neededProductCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! NeededProductCell
+        let neededProductCell = tableView.dequeueReusableCell(withIdentifier: neededProductCellIdentifier, for: indexPath) as! NeededProductCell
         neededProductCell.setupNeededProductCell(neededProduct: neededProducts[indexPath.row])
         neededProductCell.delegate = self
         return neededProductCell
@@ -91,6 +112,8 @@ extension ShoppingListViewController: UITableViewDataSource {
     
 }
 
+
+// MARK: - UITableViewDelegate
 extension ShoppingListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -99,8 +122,11 @@ extension ShoppingListViewController: UITableViewDelegate {
     
 }
 
+
+// MARK: - NeededProductCellDelegate
 extension ShoppingListViewController: NeededProductCellDelegate {
     
+    /// 必要なモノを削除する
     func remove(neededProduct: NeededProduct?) {
         guard let neededProduct = neededProduct else { return }
         guard let product = realmShared.loadByPrimaryKey(Product.self, primaryKey: neededProduct.productID) else { return }
