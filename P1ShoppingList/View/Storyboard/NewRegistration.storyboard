@@ -60,7 +60,7 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="＋"/>
                                         <connections>
-                                            <action selector="tappedAddThingButton:" destination="gaV-Fc-09I" eventType="touchUpInside" id="bcj-CX-ItX"/>
+                                            <action selector="tappedAddProductButton:" destination="gaV-Fc-09I" eventType="touchUpInside" id="Kll-Y8-OIE"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -82,9 +82,9 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="nZ8-cP-oje"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="addThingButton" destination="zgk-93-3hl" id="ai2-X0-uJ6"/>
+                        <outlet property="addProductButton" destination="zgk-93-3hl" id="CSt-bf-ote"/>
+                        <outlet property="inputProductTextField" destination="qbF-H2-cNw" id="wnZ-M1-ANQ"/>
                         <outlet property="shoppingHistoryListTableView" destination="GVq-XI-UGi" id="rMK-J6-bQF"/>
-                        <outlet property="thingTextField" destination="qbF-H2-cNw" id="hPF-pP-b7f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bcw-k3-67X" userLabel="First Responder" sceneMemberID="firstResponder"/>

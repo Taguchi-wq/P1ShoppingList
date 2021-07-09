@@ -10,23 +10,33 @@ import UIKit
 import RealmSwift
 
 class ShoppingListViewController: UIViewController {
-    
-    private let reuseIdentifier = "ThingCell"
-    private let realmManager = RealmManager()
-    private var things: Results<Thing>!
-    
 
+    // MARK: - @IBOutlets
+    /// ショッピングリストに追加したモノを表示するUITableView
     @IBOutlet private weak var shoppingListTableView: UITableView!
-    @IBOutlet private weak var addThingButton: UIButton!
+    /// モノを追加するUIButton
+    @IBOutlet private weak var addProductButton: UIButton!
     
     
+    // MARK: - Properties
+    /// NeededProductCellのidentifier
+    private let neededProductCellIdentifier = "NeededProductCell"
+    /// CategoryViewControllerのidentifier
+    private let categoryListVCIdentifier = "categoryListVC"
+    /// RealmManagerのshared
+    private let realmShared = RealmManager.shared
+    /// NeededProductを格納するResults
+    private var neededProducts: Results<NeededProduct>!
+    
+    
+    // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupShoppingListTableView()
-        setupAddThingButton()
+        setupAddProductButton()
         writeCategoriesInRealm()
-        appendThingsNotDeleted()
+        appendNeededProducts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,62 +45,76 @@ class ShoppingListViewController: UIViewController {
         shoppingListTableView.reloadData()
     }
     
+    
+    // MARK: - Private Methods
+    /// ShoppingListTableViewを設定する
     private func setupShoppingListTableView() {
         shoppingListTableView.dataSource = self
         shoppingListTableView.delegate   = self
-        shoppingListTableView.register(UINib(nibName: reuseIdentifier, bundle: nil),
-                                       forCellReuseIdentifier: reuseIdentifier)
+        shoppingListTableView.register(UINib(nibName: neededProductCellIdentifier, bundle: nil),
+                                       forCellReuseIdentifier: neededProductCellIdentifier)
     }
     
-    private func setupAddThingButton() {
-        addThingButton.layer.cornerRadius = addThingButton.bounds.height / 2
+    /// addProductButtonを設定する
+    private func setupAddProductButton() {
+        addProductButton.layer.cornerRadius = addProductButton.bounds.height / 2
     }
     
+    /// CategoryViewControllerに遷移する
     private func transitionToCategoryVC() {
-        let categoryVC = storyboard?.instantiateViewController(withIdentifier: "categoryListVC") as! CategoryListViewController
+        let categoryVC = storyboard?.instantiateViewController(withIdentifier: categoryListVCIdentifier) as! CategoryListViewController
         navigationController?.pushViewController(categoryVC, animated: true)
     }
     
+    /// Realmにカテゴリーを保存する
     private func writeCategoriesInRealm() {
-        guard let categories = realmManager.loadAllCategory() else { return }
+        // Realmにカテゴリーがなければ書き込む。あれば何もしない。
+        guard let categories = realmShared.loadAll(Category.self) else { return }
         if categories.isEmpty {
             let categories = ["日用品", "食品", "衣服", "その他"]
             _ = categories.map {
                 let category = Category()
-                category.category = $0
-                realmManager.writeCategory(category)
+                category.categoryName = $0
+                realmShared.writeCategory(category)
             }
         }
     }
     
-    private func appendThingsNotDeleted() {
-        guard let things = realmManager.loadThingsNotDeleted() else { return }
-        self.things = things
+    /// 必要なモノをneededProducts配列に追加する
+    private func appendNeededProducts() {
+        guard let neededProducts = realmShared.loadNeededProduct() else { return }
+        self.neededProducts = neededProducts
     }
     
     
-    @IBAction private func tappedAddThingButton(_ sender: UIButton) {
+    // MARK: - @IBActions
+    /// addProductButtonを押した時の処理
+    @IBAction private func tappedAddProductButton(_ sender: UIButton) {
         transitionToCategoryVC()
     }
     
 }
 
+
+// MARK: - UITableViewDataSource
 extension ShoppingListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard things != nil else { return 0 }
-        return things.count
+        guard let neededProducts = neededProducts else { return 0 }
+        return neededProducts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let thingCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ThingCell
-        thingCell.setupThingCell(thing: things[indexPath.row])
-        thingCell.delegate = self
-        return thingCell
+        let neededProductCell = tableView.dequeueReusableCell(withIdentifier: neededProductCellIdentifier, for: indexPath) as! NeededProductCell
+        neededProductCell.setupNeededProductCell(neededProduct: neededProducts[indexPath.row])
+        neededProductCell.delegate = self
+        return neededProductCell
     }
     
 }
 
+
+// MARK: - UITableViewDelegate
 extension ShoppingListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -99,12 +123,16 @@ extension ShoppingListViewController: UITableViewDelegate {
     
 }
 
-extension ShoppingListViewController: ThingCellDelegate {
+
+// MARK: - NeededProductCellDelegate
+extension ShoppingListViewController: NeededProductCellDelegate {
     
-    func remove(thing: Thing?) {
-        guard let thing = thing else { return }
-        Alert.presentDelete(on: self, thingName: thing.thingName) { _ in
-            self.realmManager.updateThingDeleteFlag(thing, isDelete: true)
+    /// 必要なモノを削除する
+    func remove(neededProduct: NeededProduct?) {
+        guard let neededProduct = neededProduct else { return }
+        guard let product = realmShared.loadByPrimaryKey(Product.self, primaryKey: neededProduct.productID) else { return }
+        Alert.presentDelete(on: self, productName: product.productName) { _ in
+            self.realmShared.deleteNeededProduct(neededProduct)
             DispatchQueue.main.async { self.shoppingListTableView.reloadData() }
         }
     }

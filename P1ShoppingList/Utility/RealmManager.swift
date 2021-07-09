@@ -9,64 +9,92 @@
 import Foundation
 import RealmSwift
 
-class RealmManager {
+/// Realmを管理するclass
+final class RealmManager {
     
-    private func loadAll<T: Object>(_ object: T.Type) -> Results<T>? {
-        do {
-            let realm = try Realm()
-            return realm.objects(T.self)
-        } catch {
-            print(error)
-        }
-        
-        return nil
-    }
+    // MARK: - initializer
+    private init() {}
     
+    // MARK: - Properties
+    /// RealmManagerのインスタンスが一つであることを保証するshared
+    static let shared = RealmManager()
+    /// Realmのインスタンス
+    private let realm = try! Realm()
+    
+    
+    // MARK: - Private Methods
+    /// Realm内に保存する
     private func write<T: Object>(_ object: T) {
         do {
-            let realm = try Realm()
             try realm.write { realm.add(object) }
         } catch {
             print(error)
         }
     }
     
-    func loadAllThing() -> Results<Thing>? {
-        return loadAll(Thing.self)
+    
+    // MARK: - Methods
+    /// Realmに保存されているデータを全て読み込む
+    func loadAll<T: Object>(_ object: T.Type) -> Results<T>? {
+        return realm.objects(T.self)
     }
     
-    func loadAllCategory() -> Results<Category>? {
-        return loadAll(Category.self)
+    /// Realmに保存されているデータをプライマリーキーから読み込む
+    func loadByPrimaryKey<T: Object>(_ object: T.Type, primaryKey: String) -> T? {
+        return realm.object(ofType: T.self, forPrimaryKey: primaryKey)
     }
     
-    func loadThingByCategoryID(_ categoryID: String) -> Results<Thing>? {
-        return loadAllThing()?.filter("categoryID == '\(categoryID)'")
+    /// Realmに保存されている「必要なモノ」のデータで、まだ買ってないものを読み込む
+    func loadNeededProduct() -> Results<NeededProduct>? {
+        return loadAll(NeededProduct.self)?.filter("boughtDate == nil")
     }
     
-    func loadThingsNotDeleted() -> Results<Thing>? {
-        return loadAllThing()?.filter("isDelete == false")
+    /// Realmに保存されている「モノ」のデータをカテゴリーIDから読み込む
+    func loadProductByCategoryID(_ categoryID: String) -> Results<Product>? {
+        return loadAll(Product.self)?.filter("categoryID == '\(categoryID)'")
     }
     
+    /// Realmに保存されている「必要なモノ」のデータをProductIDで読み込む
+    func loadNeededProductByProductID(_ productID: String) -> NeededProduct? {
+        return loadAll(NeededProduct.self)?.filter("productID == '\(productID)'").last
+    }
+    
+    /// Realmにカテゴリーを保存する
     func writeCategory(_ category: Category) {
         write(category)
     }
     
-    func writeThing(_ thing: Thing) {
-       write(thing)
+    /// Realmにモノを保存する
+    func writeProduct(_ product: Product) {
+       write(product)
     }
     
-    func checkDuplicate(thingName: String) -> Bool {
-        let isDuplicate = loadAllThing()!.filter("thingName == '\(thingName)'").isEmpty ? false : true
-        return isDuplicate
+    /// Realmに必要なモノを保存する
+    func writeNeededProduct(_ neededProduct: NeededProduct) {
+        write(neededProduct)
     }
     
-    func updateThingDeleteFlag(_ thing: Thing, isDelete: Bool) {
+    /// 「必要なモノ」を削除する(購入する)
+    func deleteNeededProduct(_ neededProduct: NeededProduct) {
         do {
-            let realm = try Realm()
-            try realm.write { thing.isDelete = isDelete }
+            try realm.write {
+                neededProduct.boughtDate = Date()
+            }
         } catch {
             print(error)
         }
+    }
+    
+    /// モノの名前がかぶっているかを確認する
+    func checkDuplicate(productName: String) -> Bool {
+        let isDuplicate = loadAll(Product.self)!.filter("productName == '\(productName)'").isEmpty ? false : true
+        return isDuplicate
+    }
+    
+    /// 必要なものが削除(購入)されたかを確認する
+    func checkDeleted(neededProduct: NeededProduct) -> Bool {
+        let isDeleted = neededProduct.boughtDate == nil ? false : true
+        return isDeleted
     }
     
 }

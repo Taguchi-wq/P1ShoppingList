@@ -33,7 +33,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="tappedAddThingButton:" destination="nog-N4-iun" eventType="touchUpInside" id="cjg-3G-Fjh"/>
+                                    <action selector="tappedAddProductButton:" destination="nog-N4-iun" eventType="touchUpInside" id="kjA-fq-Bb6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -52,7 +52,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="wxg-cH-J0W"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="addThingButton" destination="IDv-O6-qAC" id="PUs-R6-aqP"/>
+                        <outlet property="addProductButton" destination="IDv-O6-qAC" id="HON-Xb-4Ww"/>
                         <outlet property="shoppingListTableView" destination="go0-Sv-T65" id="prJ-GF-xqa"/>
                         <segue destination="4zb-7N-Rem" kind="show" id="JvG-j6-Aav"/>
                     </connections>

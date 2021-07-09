@@ -10,12 +10,15 @@ import Foundation
 
 extension Date {
     
+    // MARK: - Computed Properties
+    /// 月
     var month: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM"
         return formatter.string(from: self)
     }
     
+    /// 日
     var day: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd"
